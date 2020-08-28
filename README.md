@@ -40,8 +40,8 @@ yarn
   
 * React web app
     
-The following code we'll open expo dev server  
-You may not see proper expo log in terminal, but as long as there's noerrors appear it'll work as it is
+The following code we'll open expo dev server.    
+You may not see the expo initialization in terminal, but as long as there's noerrors appear it'll work as it is
 ```
 // act-r-rn/
 yarn build 
