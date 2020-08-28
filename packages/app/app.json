@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "act-rn-dev",
-    "slug": "act-rn-dev",
+    "name": "act-app",
+    "slug": "act-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

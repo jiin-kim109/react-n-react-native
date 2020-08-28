@@ -10,12 +10,20 @@
     "build": "expo start"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "0.1.10",
     "expo": "~38.0.8",
     "expo-status-bar": "^1.0.2",
     "firebase": "7.9.0",
+    "immutable": "^4.0.0-rc.12",
+    "lottie": "^0.0.1",
+    "mobx": "^5.15.6",
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
+    "react-native-gesture-handler": "~1.6.0",
+    "react-native-reanimated": "~1.9.0",
+    "react-native-safe-area-context": "~3.0.7",
+    "react-native-screens": "~2.9.0",
     "react-native-web": "~0.11.7"
   },
   "devDependencies": {
@@ -24,5 +32,7 @@
     "@types/react-native": "~0.62.13",
     "typescript": "~3.9.5"
   },
-  "private": true
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT"
 }
