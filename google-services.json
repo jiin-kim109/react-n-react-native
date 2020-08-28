@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1016558907429",
+    "firebase_url": "https://act-dev-a4876.firebaseio.com",
+    "project_id": "act-dev-a4876",
+    "storage_bucket": "act-dev-a4876.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1016558907429:android:ef0fcfdc5f6999852bcfcc",
+        "android_client_info": {
+          "package_name": "com.inklings.act_dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1016558907429-t5g9q1dqk5bcdpkdgs8j61rrbvmbai9q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNZjW7mxcPvNqx89a4g6YBnWvJUYgRhwk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1016558907429-t5g9q1dqk5bcdpkdgs8j61rrbvmbai9q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
