@@ -10,5 +10,7 @@
     "@types/jest": "^26.0.10",
     "jest": "^26.4.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "mobx": "^5.15.6"
+  }
 }
