@@ -38,7 +38,8 @@ yarn
   
 3. Start the application  
   
-* React web app  
+* React web app
+    
 The following code we'll open expo dev server  
 You may not see proper expo log in terminal, but as long as there's noerrors appear it'll work as it is
 ```
