@@ -43,31 +43,17 @@ yarn
 // act-r-rn/
 yarn build 
 ```
-
+  
+4. Testing  
+  
+* Test common  
+  
 ```
-createdb graphql-ts-server-boilerplate
+cd packages  
+cd common  
+yarn jest  
 ```
-
-6. [Add a user](https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e) with the username `postgres` and and no password. (You can change what these values are in the [ormconfig.json](https://github.com/benawad/graphql-ts-server-boilerplate/blob/master/ormconfig.json))
-
-7. Connect to the database with `psql` and add the uuid extension:
-
-```
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-``` 
-
-8. Install and start Redis
-
-9. In `packages/server` create a file called `.env` and add the following line inside: `FRONTEND_HOST=http://localhost:3000`
-
-10. Run `yarn build` in `packages/common`
-
-11. Run `yarn build` in `packages/controller`
-
-12. Get Google Maps API key and put it here https://github.com/benawad/fullstack-graphql-airbnb-clone/blob/master/packages/web/public/index.html#L14 Videos doing that: https://youtu.be/-QQnzDVcTCo and https://youtu.be/xLlIgokKiLc
-
-
-
+  
 ## Usage
 
 1. Start server `yarn start` in `packages/server`
