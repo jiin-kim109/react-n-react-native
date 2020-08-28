@@ -38,18 +38,18 @@ yarn
 
 3. Start the application
 
-    * React web app
-    The following code we'll open expo dev server  
-    You may not see proper expo log in terminal, but as long as there's no errors appear it'll work as it is
-    ```
-    // act-r-rn/
-    yarn build 
-    ```
-    * React Native app
-    ```
-    // act-r-rn/
-    yarn build 
-    ```
+* React web app
+The following code we'll open expo dev server  
+You may not see proper expo log in terminal, but as long as there's noerrors appear it'll work as it is
+```
+// act-r-rn/
+yarn build 
+```
+* React Native app
+```
+// act-r-rn/
+yarn build 
+```
 
 ```
 createdb graphql-ts-server-boilerplate
