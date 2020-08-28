@@ -15,14 +15,14 @@ This multi-platform application is made of multiple yarn packages that contain c
 The packages are manages with Lerna.js  
   
 ## Installation
-
-1. Clone project
+  
+1. Clone project  
 
 ```
 git clone https://github.com/benawad/fullstack-graphql-airbnb-clone.git
 ```
-
-2. Download dependencies
+  
+2. Download dependencies  
 
 ```
 cd act-r-rn
@@ -35,10 +35,10 @@ cd fullstack-graphql-airbnb-clone
 // act-r-rn/packages/app, act-r-rn/packages/web, act-r-rn/packages/common
 yarn
 ```
-
-3. Start the application
-
-* React web app
+  
+3. Start the application  
+  
+* React web app  
 The following code we'll open expo dev server  
 You may not see proper expo log in terminal, but as long as there's noerrors appear it'll work as it is
 ```
