@@ -23,7 +23,7 @@ git clone https://github.com/benawad/fullstack-graphql-airbnb-clone.git
   
 2. Download dependencies  
    
-will download dependencies from all the packages  
+At the root directory, type the command below to download the dependencies for all package.jsons  
 ```
 yarn
 ```
@@ -34,13 +34,11 @@ yarn
     
 The following command we'll open expo dev server.    
 ```
-// act-r-rn/
-yarn 
+yarn build:web  
 ```
 * React Native app
 ```
-// act-r-rn/
-yarn build 
+yarn build:app  
 ```
   
 4. Testing  
