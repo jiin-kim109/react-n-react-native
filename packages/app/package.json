@@ -7,7 +7,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "build": "expo start"
+    "build": "expo build"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.4",

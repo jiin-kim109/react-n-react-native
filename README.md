@@ -13,6 +13,12 @@ A multi-platform application made of multiple yarn packages that contain common 
   
 The packages are managed by Lerna.js  
   
+## Deploy  
+  
+### App  
+  
+### Web App  
+  
 ## Installation
   
 1. Clone project  
@@ -28,17 +34,17 @@ At the root directory, type the command to download the dependencies of all pack
 yarn
 ```
   
-3. Start the application  
+3. Run the application in dev
   
 * React web app
     
 The command to open expo dev server.    
 ```
-yarn build:web  
+yarn start:web  
 ```
 * React Native app
 ```
-yarn build:app  
+yarn start:app  
 ```
   
 4. Testing  
@@ -50,12 +56,17 @@ cd packages
 cd common  
 yarn jest  
 ```
-  
-## Deploy
 
-### App
+## Reference
 
-### Web App
+### DI Between React and React Native  
+(typeId)  
+https://medium.com/pplink/react-native-web-1b2aa90df8c5  
+https://gist.github.com/NoMoreViolence/
+(example)  
+caa333599b60a49bc0a2231ad82f777d#file-audioserviceinterface-ts  
+https://gist.github.com/NoMoreViolence/622bee22797dfd67880ac0ba28130368  
+https://gist.github.com/NoMoreViolence/88129471160137a9c477eb4dd6eab869  
 
-## Features
+
 

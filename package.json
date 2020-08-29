@@ -2,6 +2,8 @@
   "name": "root",
   "private": true,
   "scripts": {
+    "start:web": "lerna run start --scope={act-common,act-web}",
+    "start:app": "lerna run start --scope={act-common,act-app}",
     "build:web": "lerna run build --scope={act-common,act-web}",
     "build:app": "lerna run build --scope={act-common,act-app}"
   },
