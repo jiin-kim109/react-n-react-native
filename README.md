@@ -1,18 +1,17 @@
 # Act-R-Rn
 
-A set of React and React Native packages for Act mobile and web development
-
-- 
+React and React Native packages for mobile and web app development
+  
 
 ## Description
 
-This multi-platform application is made of multiple yarn packages that contain code share between React and React Native components
+A multi-platform application made of multiple yarn packages that contain common code sharing between React and React Native components
 
 - web (React.js web app)  
 - app (React Native app)  
 - common (Code and components shared between web, and app)  
   
-The packages are manages with Lerna.js  
+The packages are managed by Lerna.js  
   
 ## Installation
   
