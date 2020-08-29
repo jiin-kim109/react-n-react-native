@@ -7,9 +7,9 @@ React and React Native packages for mobile and web app development
 
 A multi-platform application made of multiple yarn packages that contain common code sharing between React and React Native components
 
-- web (React.js web app)  
-- app (React Native app)  
-- common (Code and components shared between web, and app)  
+- ./packages/web (React.js web app)  
+- ./packages/app (React Native app)  
+- ./packages/common (Code and components shared between web, and app)  
   
 The packages are managed by Lerna.js  
   
