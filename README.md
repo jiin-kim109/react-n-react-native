@@ -58,13 +58,17 @@ yarn jest
 ```
 
 ## Reference
-
+  
+### React Native for Web  
+https://github.com/necolas/react-native-web    
+(docs) http://necolas.github.io/react-native-web/docs/?path=/docs/overview-getting-started--page  
+  
 ### DI Between React and React Native  
 (typeId)  
-https://medium.com/pplink/react-native-web-1b2aa90df8c5  
-https://gist.github.com/NoMoreViolence/
-(example)  
-caa333599b60a49bc0a2231ad82f777d#file-audioserviceinterface-ts  
+https://github.com/typestack/typedi   
+  
+(examples)  
+https://gist.github.com/NoMoreViolence/caa333599b60a49bc0a2231ad82f777d#file-audioserviceinterface-ts       
 https://gist.github.com/NoMoreViolence/622bee22797dfd67880ac0ba28130368  
 https://gist.github.com/NoMoreViolence/88129471160137a9c477eb4dd6eab869  
 
