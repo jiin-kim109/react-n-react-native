@@ -1,4 +1,4 @@
-# Act-R-Rn
+# Act-App
 
 React and React Native packages for mobile and web app development
   
