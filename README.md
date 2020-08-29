@@ -23,7 +23,7 @@ git clone https://github.com/benawad/fullstack-graphql-airbnb-clone.git
   
 2. Download dependencies  
    
-At the root directory, type the command below to download the dependencies for all package.jsons  
+At the root directory, type the command to download the dependencies of all package.jsons  
 ```
 yarn
 ```
@@ -32,7 +32,7 @@ yarn
   
 * React web app
     
-The following command we'll open expo dev server.    
+The command to open expo dev server.    
 ```
 yarn build:web  
 ```
@@ -51,14 +51,6 @@ cd common
 yarn jest  
 ```
   
-## Usage
-
-1. Start server `yarn start` in `packages/server`
-
-2. Now you can run `yarn start` in `packages/web` or `packages/app` to start the website or app.
-
-3. How to get credentials working in graphql playground: https://youtu.be/oM-EmNdhwI4?t=8m39s
-
 ## Deploy
 
 ### App
