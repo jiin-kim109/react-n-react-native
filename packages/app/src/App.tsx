@@ -1,3 +1,4 @@
+import { registerRootComponent } from 'expo';
 import { Provider } from 'mobx-react';
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
@@ -10,7 +11,7 @@ interface State {}
 
 interface Props {}
 
-export default class App extends Component<Props, State> {
+class App extends Component<Props, State> {
   private rootStore: RootStore;
 
   constructor(props: Props) {
@@ -40,3 +41,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default registerRootComponent(App);

@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/14.8.0/bin/node /usr/local/Cellar/yarn/1.22.4/libexec/bin/yarn.js add @types/mobx-react
+  /usr/local/Cellar/node/14.8.0/bin/node /usr/local/Cellar/yarn/1.22.4/libexec/bin/yarn.js start:app
 
 PATH: 
   /usr/local/opt/postgresql@11/bin:/Users/jiinkim/Desktop/BASE/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/opt/postgresql@11/bin:/Users/jiinkim/Desktop/BASE/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin
@@ -14,58 +14,43 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fmobx-react: Not found
-      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:66987:18)
-      at Request.self.callback (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:140748:22)
-      at Request.emit (events.js:314:20)
-      at Request.<anonymous> (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:141720:10)
-      at Request.emit (events.js:314:20)
-      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:141642:12)
-      at Object.onceWrapper (events.js:420:28)
-      at IncomingMessage.emit (events.js:326:22)
-      at endReadableNT (_stream_readable.js:1244:12)
-      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+  SyntaxError: /Users/jiinkim/Desktop/ACT-dev/rn-act-dev/package.json: Unexpected token } in JSON at position 186
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:310:30)
+      at /usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:321:13
 
 npm manifest: 
   {
-    "name": "act-app",
-    "main": "./node_modules/expo/AppEntry.js",
+    "name": "root",
+    "private": true,
     "scripts": {
-      "start": "expo start",
-      "android": "expo start --android",
-      "ios": "expo start --ios",
-      "web": "expo start --web",
-      "eject": "expo eject",
-      "build": "expo build"
+      "start:web": "lerna run start --scope={act-common,act-web}",
+      "start:app": "lerna run start --scope={act-common,act-app}",
     },
-    "dependencies": {
-      "@babel/plugin-proposal-class-properties": "^7.10.4",
-      "@babel/plugin-proposal-decorators": "^7.10.5",
-      "@react-native-community/masked-view": "0.1.10",
-      "expo": "~38.0.8",
-      "expo-status-bar": "^1.0.2",
-      "firebase": "7.9.0",
-      "immutable": "^4.0.0-rc.12",
-      "lottie": "^0.0.1",
-      "mobx-react": "^6.3.0",
-      "react": "~16.11.0",
-      "react-dom": "~16.11.0",
-      "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
-      "react-native-gesture-handler": "~1.6.0",
-      "react-native-reanimated": "~1.9.0",
-      "react-native-safe-area-context": "~3.0.7",
-      "react-native-screens": "~2.9.0",
-      "react-native-web": "~0.11.7"
+    "workspaces": {
+      "packages": [
+        "packages/*"
+      ],
+      "nohoist": [
+        "**/rimraf",
+        "**/rimraf/**",
+        "**/react-native-elements",
+        "**/react-native-elements/**",
+        "**/react-native",
+        "**/react-native/**",
+        "**/expo",
+        "**/expo/**",
+        "**/react-native-typescript-transformer",
+        "**/react-native-typescript-transformer/**",
+        "**/metro-bundler-config-yarn-workspaces",
+        "**/metro-bundler-config-yarn-workspaces/**"
+      ]
     },
     "devDependencies": {
-      "@babel/core": "^7.8.6",
-      "@types/react": "~16.9.41",
-      "@types/react-native": "~0.62.13",
-      "typescript": "~3.9.5"
-    },
-    "private": true,
-    "version": "1.0.0",
-    "license": "MIT"
+      "lerna": "^3.22.1"
+    }
   }
 
 yarn manifest: 
