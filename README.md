@@ -9,7 +9,7 @@ A multi-platform application made of multiple yarn packages that contain common 
 
 - packages/web (React.js web app)  
 - packages/app (React Native app)  
-- packages/common (Code and components shared between web, and app)  
+- packages/common (Code sharing between web and app)  
   
 The packages are managed by Lerna.js  
   
