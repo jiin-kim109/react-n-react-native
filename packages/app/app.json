@@ -21,7 +21,7 @@
       "**/*"
     ],
     "android" : {
-      "package" : "com.inklings.act_dev",
+      "package" : "com.inklings.act",
       "googleServicesFile": "./google-services.json"
     },
     "ios": {

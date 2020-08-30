@@ -34,22 +34,42 @@ At the root directory, type the command to download the dependencies of all pack
 yarn
 ```
   
-3. Run the application in dev
+## Yarn Commands
   
-* React web app
+1. Run the application in dev
+  
+- React web app  
     
-The command to open expo dev server.    
 ```
 yarn start:web  
 ```
-* React Native app
+  
+- React Native app    
+  
+The command will open expo dev server (default=localhost:19002)  
 ```
 yarn start:app  
 ```
   
+2. Build the application
+  
+- React web app   
+  
+```
+yarn build:web    
+```
+  
+- React Native app    
+  
+build .apk or .app-bundle for Android  
+```  
+yarn build:app:android
+```  
+build .ipa for iOS  
+  
 4. Testing  
   
-* Test common  
+* Test common components & controller  
   
 ```
 cd packages  
@@ -62,6 +82,9 @@ yarn jest
 ### React Native for Web  
 https://github.com/necolas/react-native-web    
 (docs) http://necolas.github.io/react-native-web/docs/?path=/docs/overview-getting-started--page  
+  
+### Writing a common UI component   
+https://codesandbox.io/s/q4qymyp2l6?file=/src/App.js:2971-2980  
   
 ### DI Between React and React Native  
 (typeId)  

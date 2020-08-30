@@ -1,11 +1,26 @@
-import React from 'react'
+import * as React from 'react';
+import { Provider } from 'mobx-react';
 
-export default class App extends React.Component {
-    render(){
-        return(
-            <div>
-                <h1>My React App</h1>
-            </div>
-        )
-    }
+import RootStore from '../../../common/src/store/RootStore';
+
+interface Props{
+
 }
+interface State{
+    
+}
+class App extends React.Component<Props, State> {
+  private rootStore: RootStore;
+
+  render() {
+    return (
+    <Provider rootStore={this.rootStore}>
+      <div>
+        <h1>Welcome to React with Typescript</h1>
+      </div>
+    </Provider>
+    );
+  }
+}
+
+export default App;

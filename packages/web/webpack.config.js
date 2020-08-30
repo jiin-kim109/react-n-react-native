@@ -10,18 +10,35 @@ module.exports = {
     module: {                                           // load babel-loader for all .js files except that in node_modules
         rules: [
             {
-                test: /\.js$/,                          
+                test: /\.tsx?$/, 
+                use: 'ts-loader',
+                exclude: /node_modules/ 
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+            {
+                test: /\.(js|ts)$/,                          
                 exclude: /node_module/,                 
-                use:{
-                    loader: 'babel-loader'				
-                }
+                use: 'babel-loader',		
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                    'file-loader'
+                ]
             }
         ]
     },
     resolve: {
+        extensions: [ '.tsx', '.ts', '.js' ],
         alias: {
           'react-native$': 'react-native-web'           // load reate-native-web instead of react-native
-        }
+        },
     },
     plugins: [
         new HtmlWebpackPlugin({
