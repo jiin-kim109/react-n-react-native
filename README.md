@@ -40,6 +40,7 @@ yarn
   
 - React web app  
     
+app-app/
 ```
 yarn start:web  
 ```
@@ -82,14 +83,14 @@ yarn jest
 
 ## Reference
   
-### React Native for Web  
+### React Native for Web
 https://github.com/necolas/react-native-web    
 (docs) http://necolas.github.io/react-native-web/docs/?path=/docs/overview-getting-started--page  
   
-### Writing a common UI component   
+### Writing a common UI component
 https://codesandbox.io/s/q4qymyp2l6?file=/src/App.js:2971-2980  
   
-### DI Between React and React Native  
+### DI Between React and React Native
 (typeId)  
 https://github.com/typestack/typedi   
   
