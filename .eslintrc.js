@@ -19,6 +19,8 @@ module.exports = {
       sourceType: 'module',
     },
     rules: {
+      'react/jsx-filename-extension': 'off',
+      'import/extensions': 'off',
       'import/no-unresolved': 'off',
       'linebreak-style': 'off',
       'prettier/prettier': [
