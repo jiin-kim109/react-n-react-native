@@ -84,7 +84,8 @@ yarn jest
 ## Reference
   
 ### React Native for Web
-https://github.com/necolas/react-native-web    
+https://github.com/necolas/react-native-web  
+  
 (docs) http://necolas.github.io/react-native-web/docs/?path=/docs/overview-getting-started--page  
   
 ### Writing a common UI component
