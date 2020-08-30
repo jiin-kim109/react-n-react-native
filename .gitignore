@@ -1,5 +1,6 @@
 node_modules/**/*
-.expo/*
+packages/app/.expo/*
+packages/app/.expo-shared/*
 npm-debug.*
 *.jks
 *.p8
@@ -11,6 +12,7 @@ web-build/
 packages/app/node_modules/**/*
 packages/common/node_modules/**/*
 packages/web/node_modules/**/*
+.vscode
 
 # macOS
 .DS_Store
