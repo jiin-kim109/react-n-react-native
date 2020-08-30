@@ -66,6 +66,9 @@ build .apk or .app-bundle for Android
 yarn build:app:android
 ```  
 build .ipa for iOS  
+```  
+yarn build:app:ios
+```  
   
 4. Testing  
   
