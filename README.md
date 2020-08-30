@@ -71,6 +71,8 @@ https://github.com/typestack/typedi
 https://gist.github.com/NoMoreViolence/caa333599b60a49bc0a2231ad82f777d#file-audioserviceinterface-ts       
 https://gist.github.com/NoMoreViolence/622bee22797dfd67880ac0ba28130368  
 https://gist.github.com/NoMoreViolence/88129471160137a9c477eb4dd6eab869  
-
-
+  
+### How to import files outside React Native root directory  
+(metro bundler)  
+https://medium.com/@dushyant_db/how-to-import-files-from-outside-of-root-directory-with-react-native-metro-bundler-18207a348427  
 
