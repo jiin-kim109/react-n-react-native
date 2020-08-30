@@ -23,6 +23,8 @@
       "**/expo/**",
       "**/mobx-react",
       "**/mobx-react/**",
+      "**/mobx",
+      "**/mobx/**",
       "**/expo-status-bar",
       "**/expo-status-bar/**",
       "**/react-native-typescript-transformer",

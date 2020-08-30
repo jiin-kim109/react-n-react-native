@@ -22,7 +22,7 @@
     ],
     "android" : {
       "package" : "com.inklings.act",
-      "googleServicesFile": "./google-services.json"
+      "googleServicesFile": "../common/google-services.json"
     },
     "ios": {
       "supportsTablet": true

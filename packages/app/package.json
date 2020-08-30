@@ -9,16 +9,13 @@
     "eject": "expo eject",
     "build:android": "expo build:android",
     "build:ios": "expo build:ios",
-    "format": "prettier --write src/**/*.ts{,x}",
-    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}"
+    "format": "prettier --write src/**/*.tsx",
+    "lint": "tsc --noEmit && eslint src/**/*.tsx"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/plugin-proposal-decorators": "^7.10.5",
     "@react-native-community/masked-view": "0.1.10",
     "expo": "^38.0.9",
     "expo-status-bar": "^1.0.0",
-    "lottie": "^0.0.1",
     "mobx": "^5.15.6",
     "mobx-react": "^6.3.0",
     "react": "~16.11.0",
@@ -32,6 +29,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-decorators": "^7.10.5",
     "@types/react": "~16.9.41",
     "@types/react-native": "~0.62.13",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
@@ -45,18 +44,20 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.1.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.13",
     "prettier": "^2.1.1",
     "typescript": "~3.9.5"
   },
   "husky": {
     "hooks": {
-        "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": [
-        "eslint --fix"
-     ]
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ]
   },
   "private": true,
   "version": "1.0.0"

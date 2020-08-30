@@ -10,9 +10,9 @@ module.exports = {
     module: {                                           // load babel-loader for all .js files except that in node_modules
         rules: [
             {
-                test: /\.tsx?$/, 
+                test: /\.(js|ts|tsx)$/,
                 use: 'ts-loader',
-                exclude: /node_modules/ 
+                exclude: /node_modules/,
             },
             {
                 test: /\.css$/,
@@ -22,7 +22,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(js|ts)$/,                          
+                test: /\.jsx?$/,                       
                 exclude: /node_module/,                 
                 use: 'babel-loader',		
             },
@@ -35,7 +35,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [ '.tsx', '.ts', '.js' ],
+        extensions: [ '.ts', '.tsx', '.js' ],
         alias: {
           'react-native$': 'react-native-web'           // load reate-native-web instead of react-native
         },

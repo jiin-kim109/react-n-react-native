@@ -13,9 +13,6 @@
     "experimentalDecorators": true,
     "esModuleInterop": true
   },
-  "include": [
-    "./src/**/*"
-  ],
   "exclude": [
     "./node_modules/**/*"
   ]

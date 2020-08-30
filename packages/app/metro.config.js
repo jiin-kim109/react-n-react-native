@@ -1,11 +1,11 @@
 const path = require('path');
 
 const extraNodeModules = {
-  'common': path.join(__dirname, '..', 'common'),
-  'root': path.join(__dirname, '..', '..')
+  'common': path.resolve(__dirname, "../../node_modules"),
 };
 const watchFolders = [
-  path.join(__dirname, '..', 'common')
+  path.join(__dirname, '..', 'common'),
+  path.join(__dirname, '..', '..')
 ];
 module.exports = {
   transformer: {
