@@ -2,7 +2,6 @@
   "name": "act-web",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT",
   "dependencies": {
     "mobx": "^5.15.6",
     "mobx-react": "^6.3.0",
