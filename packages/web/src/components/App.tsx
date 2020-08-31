@@ -1,18 +1,12 @@
-import React, { Component } from 'react';
-import { Provider } from 'mobx-react';
+import React, { Component } from "react";
+import { Provider } from "mobx-react";
 
-import RootStore from '../../../common/src/store/RootStore';
+import RootStore from "../../../common/src/store/RootStore";
 
-interface Props{
-
-}
-interface State{
-    
-}
-class App extends Component<Props, State> {
+class App extends Component {
   private rootStore: RootStore;
 
-  constructor(props: Props){
+  constructor(props) {
     super(props);
     this.rootStore = new RootStore();
   }
