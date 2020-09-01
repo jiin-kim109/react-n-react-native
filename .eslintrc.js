@@ -23,11 +23,9 @@ module.exports = {
       'import/extensions': 'off',
       'import/no-unresolved': 'off',
       'linebreak-style': 'off',
-      'prettier/prettier': [
-        'error',
-        {
-          endOfLine: 'auto',
-        },
-      ],
+
+      'react/prefer-stateless-function': 'off',
+      'no-use-before-define': 'off',
+      'react/require-default-props': 'off',
     },
   };

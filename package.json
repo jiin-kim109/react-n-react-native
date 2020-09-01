@@ -1,39 +1,6 @@
 {
-  "name": "root",
   "private": true,
-  "scripts": {
-    "build:web": "lerna run build --scope={act-common,act-web}",
-    "build:app:android": "lerna run build --scope={act-common,act-app}",
-    "build:app:ios": "lerna run build --scope={act-common,act-app}",
-    "start:web": "lerna run start --scope={act-common,act-web}",
-    "start:app": "lerna run start --scope={act-common,act-app}"
-  },
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ],
-    "nohoist": [
-      "**/rimraf",
-      "**/rimraf/**",
-      "**/react-native-elements",
-      "**/react-native-elements/**",
-      "**/react-native",
-      "**/react-native/**",
-      "**/expo",
-      "**/expo/**",
-      "**/mobx-react",
-      "**/mobx-react/**",
-      "**/mobx",
-      "**/mobx/**",
-      "**/expo-status-bar",
-      "**/expo-status-bar/**",
-      "**/react-native-typescript-transformer",
-      "**/react-native-typescript-transformer/**",
-      "**/metro-bundler-config-yarn-workspaces",
-      "**/metro-bundler-config-yarn-workspaces/**"
-    ]
-  },
-  "devDependencies": {
-    "lerna": "^3.22.1"
-  }
+  "workspaces": [
+    "packages/*"
+  ]
 }

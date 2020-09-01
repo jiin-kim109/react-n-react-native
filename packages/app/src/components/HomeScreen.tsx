@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
-import { StyleSheet, Platform, View, Text } from 'react-native';
+import React, { Component } from "react";
+import { View, Text } from "react-native";
 
-
-class HomeScreen extends Component{
-    render() {
-      return (
-        <View>
-            <Text>Hi!</Text>
-        </View>
-      )
-    }
-}
-
+const HomeScreen = () => {
+  return (
+    <View>
+      <Text>Hi!</Text>
+    </View>
+  );
+};
 export default HomeScreen;

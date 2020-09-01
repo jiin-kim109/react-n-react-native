@@ -10,7 +10,7 @@ npm-debug.*
 *.orig.*
 web-build/
 packages/app/node_modules/**/*
-packages/common/node_modules/**/*
+packages/controller/node_modules/**/*
 packages/web/node_modules/**/*
 .vscode
 

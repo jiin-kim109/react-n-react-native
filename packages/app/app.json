@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "act-app",
-    "slug": "act-app",
+    "name": "app",
+    "slug": "app",
     "version": "1.0.0",
     "orientation": "portrait",
     "entryPoint": "./src/App.tsx",
@@ -22,7 +22,7 @@
     ],
     "android" : {
       "package" : "com.inklings.act",
-      "googleServicesFile": "../common/google-services.json"
+      "googleServicesFile": "../controllers/google-services.json"
     },
     "ios": {
       "supportsTablet": true

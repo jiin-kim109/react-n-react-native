@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx';
 
-export default class RootStore {
+export class RootStore {
     @observable number: number = 0;
   
     @action increase = () => {
