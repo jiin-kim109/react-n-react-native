@@ -106,3 +106,9 @@ https://medium.com/@dushyant_db/how-to-import-files-from-outside-of-root-directo
    
 ### Mono repo and nohoist
 https://classic.yarnpkg.com/blog/2018/02/15/nohoist/
+  
+### SnapChat like swipe navigation
+https://medium.com/the-react-native-log/implement-snapchat-like-swipe-navigation-declaratively-in-react-native-309e71229c89
+  
+### Delete Navigation Stack History
+https://github.com/react-navigation/react-navigation/issues/295

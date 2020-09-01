@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Provider } from "mobx-react";
 
-import RootStore from "../../../common/src/store/RootStore";
+import RootStore from "../../common/src/store/RootStore";
 
 class App extends Component {
   private rootStore: RootStore;
