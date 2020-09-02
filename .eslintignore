@@ -1,6 +1,2 @@
 ./packages/app/babel.config.js
 ./packages/web/babel.config.js
-./pakcages/app/__generated__/AppEntry.js
-./packages/app/metro.config.js
-**/AppEntry.js
-**/metro.config.js

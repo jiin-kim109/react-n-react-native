@@ -8,13 +8,15 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { RootStore } from "@act/controllers";
 import { Root } from "native-base";
 import HomeScreen from "./components/HomeScreen";
-import TutorialScreen from "./components/landing/TutorialScreen";
+import LandingPage from "./components/landing/LandingPage";
+import SurveyPage from "./components/landing/SurveyPage";
 
 // Set prop types for each route
 // undefine means the route has no param
 // union (e.g. param | undefined) means that the params are optional
 export type RootStackParamList = {
-  Tutorial: undefined;
+  Landing: undefined;
+  Survey: undefined;
   Home: undefined;
 };
 
@@ -26,8 +28,21 @@ class App extends Component {
     return (
       <Provider rootStore={this.rootStore}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Tutorial">
-            <Stack.Screen name="Tutorial" component={TutorialScreen} />
+          <Stack.Navigator initialRouteName="Landing">
+            <Stack.Screen
+              name="Landing"
+              component={LandingPage}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="Survey"
+              component={SurveyPage}
+              options={{
+                headerShown: false,
+              }}
+            />
             <Stack.Screen name="Home" component={HomeScreen} />
           </Stack.Navigator>
         </NavigationContainer>
