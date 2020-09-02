@@ -77,11 +77,6 @@ function Slide({
   );
 }
 
-Slide.defaultProps = {
-  backgroundImgUrl: "",
-  selectionOptions: [],
-};
-
 export default function SurveyPage({ navigation }: SurveyProps) {
   return (
     <Container>

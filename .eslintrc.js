@@ -23,5 +23,6 @@ module.exports = {
       'import/extensions': 'off',
       'import/no-unresolved': 'off',
       'linebreak-style': 'off',
+      'react/require-default-props': 'off'
     },
   };
