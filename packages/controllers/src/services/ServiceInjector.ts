@@ -1,32 +1,31 @@
-import { Container } from "typedi";
+import { Container, Service, Token } from "typedi";
 
-import firebase from "./Firebase";
-import { SampleService, SampleServiceInterface } from "./SampleService";
-import { SamplePlatformServiceInterface } from "./SamplePlatformService";
+import { SERVICE_SAMPLE_TOKEN, SampleService } from "./SampleService";
+import { SERVICE_SAMPLE_PLATFORM_TOKEN } from "./SamplePlatformService";
 
-interface ServiceTypeMap {
-    Firebase: typeof firebase
-    SampleService: SampleServiceInterface
-    SamplePlatformService: SamplePlatformServiceInterface
-}
+const serviceTokenList = [
+    SERVICE_SAMPLE_TOKEN,
+    SERVICE_SAMPLE_PLATFORM_TOKEN,
+];
+type ServiceTokenTypes = typeof serviceTokenList[number];
 
 class ServiceInjector {
-    public static set<T extends keyof ServiceTypeMap>(serviceName: T, service: ServiceTypeMap[T]): void{
-        Container.set(serviceName, service);
+    public static set<T>(serviceToken: Token<string>, service: T): void{
+        if(!serviceTokenList.includes(serviceToken)){
+            console.log("SERVICE:: Couldn't register the service '" + serviceToken.name + "' unknown by the Service Injector");
+            return;
+        }
+        Container.set(serviceToken, service);
     }
-    public static get<T extends keyof ServiceTypeMap>(serviceName: T): ServiceTypeMap[T]{
-        const instance: ServiceTypeMap[T] = Container.get(serviceName);
-        if (!instance)
-            console.log("SERVICE:: Couldn't find a registered service '" + serviceName + "'");
-        return instance;
+    public static get(serviceToken: Token<string>): any{
+        return Container.get(serviceToken);
     }
 }
 
 //---------------- Registered Services ----------------
-ServiceInjector.set('Firebase', firebase);
-ServiceInjector.set('SampleService', new SampleService("testSrc"));
+ServiceInjector.set(SERVICE_SAMPLE_TOKEN, new SampleService("testSrc"));
 
 //---------------- Registered Platform Services ----------------
-ServiceInjector.set('SamplePlatformService', null);
+ServiceInjector.set(SERVICE_SAMPLE_PLATFORM_TOKEN, null);
 
-export { ServiceTypeMap, ServiceInjector };
+export { ServiceInjector };

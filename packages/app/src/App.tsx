@@ -4,13 +4,16 @@ import { Provider } from "mobx-react";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { RootStore, ServiceInjector } from "@act/controllers";
+import { 
+  RootStore, 
+  ServiceInjector, 
+  SERVICE_SAMPLE_PLATFORM_TOKEN 
+} from "@act/controllers";
 
 import HomeScreen from "./components/HomeScreen";
 import LandingPage from "./components/landing/LandingPage";
 import SurveyPage from "./components/landing/SurveyPage";
 import SamplePlatformService from "./services/SamplePlatformService";
-//import SamplePlatformService from './services/SamplePlatformService';
 
 // Set prop types for each route
 // undefine means the route has no param
@@ -26,11 +29,7 @@ class App extends Component {
   private rootStore: RootStore = new RootStore();
 
   _registerPlatformServices(){
-    ServiceInjector.set('SamplePlatformService', new SamplePlatformService());
-    console.log(
-      "SERVICE INJECTOR_TEST OUTPUT:: " + "\n" +
-      ServiceInjector.get('SampleService').getName() + " " + ServiceInjector.get('SamplePlatformService').getName()
-    );    
+    ServiceInjector.set(SERVICE_SAMPLE_PLATFORM_TOKEN, new SamplePlatformService());
   }
 
   componentDidMount(){

@@ -1,7 +1,7 @@
-import { Service, Inject } from 'typedi';
+import { Service, Inject, Token } from 'typedi';
 import { auth } from 'firebase';
 
-
+export const SERVICE_SAMPLE_TOKEN = new Token<string>('SERVICE_SAMPLE_TOKEN');
 export abstract class SampleServiceInterface {
     // eslint-disable-next-line
     constructor(src: string) {
