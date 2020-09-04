@@ -1,10 +1,9 @@
 import { observable, action } from 'mobx';
 import { db } from '../firebase/Firebase';
-import PubSub from 'pubsub-js';
 
 export default class UserStore {
     constructor(){
-        PubSub.subscribe('sampleTopic', this.resSampleAsyncAction);
+
     }
 
     @observable sampleAsyncItem: string;
@@ -17,10 +16,7 @@ export default class UserStore {
                 // Listen for document metadata changes
                 includeMetadataChanges: true
             }, function(doc) {
-                PubSub.publish('sampleTopic');
+                this.sampleAsyncItem = "aa";
             });
-    }
-    resSampleAsyncAction() {
-        this.sampleAsyncItem = "published"
     }
 }
