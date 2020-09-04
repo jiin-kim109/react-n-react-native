@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ServiceInjector } from "@act/controllers";
 import { StyleSheet, View, Text, Image, ImageBackground } from "react-native";
 import { Button } from "native-base";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -50,7 +51,7 @@ const LandingPage = ({ navigation }: LandingProps) => {
             style={styles.button}
             onPress={() => navigation.navigate("Survey")}
           >
-            <Text>Get Started</Text>
+            <Text>{ServiceInjector.get('SampleService').printName()}</Text>
           </Button>
         </View>
       </ImageBackground>
