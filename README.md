@@ -81,34 +81,32 @@ cd common
 yarn jest  
 ```
 
-## Reference
+## Features
   
 ### React Native for Web
 https://github.com/necolas/react-native-web  
   
 (docs) http://necolas.github.io/react-native-web/docs/?path=/docs/overview-getting-started--page  
   
-### Writing a common UI component
+### Importing RN-for-web components from web
 https://codesandbox.io/s/q4qymyp2l6?file=/src/App.js:2971-2980  
   
-### DI Between React and React Native
-(typeId)  
-https://github.com/typestack/typedi   
+### DI to support each platform's services
+(typedi) https://github.com/typestack/typedi   
+(docs) https://docs.typestack.community/typedi/v/develop/  
   
-(examples)  
-https://gist.github.com/NoMoreViolence/caa333599b60a49bc0a2231ad82f777d#file-audioserviceinterface-ts       
-https://gist.github.com/NoMoreViolence/622bee22797dfd67880ac0ba28130368  
-https://gist.github.com/NoMoreViolence/88129471160137a9c477eb4dd6eab869  
+### Async events subscription
+(PubSub) https://github.com/georapbox/PubSub  
   
 ### How to import files outside React Native root directory
 (metro bundler)  
 https://medium.com/@dushyant_db/how-to-import-files-from-outside-of-root-directory-with-react-native-metro-bundler-18207a348427  
    
-### Mono repo and nohoist
-https://classic.yarnpkg.com/blog/2018/02/15/nohoist/
+### Monorepo using yarn Workspaces in Expo
+(expo-yarn-workspaces) https://github.com/expo/expo/tree/master/packages/expo-yarn-workspaces  
   
-### SnapChat like swipe navigation
-https://medium.com/the-react-native-log/implement-snapchat-like-swipe-navigation-declaratively-in-react-native-309e71229c89
+### Swipe in React Native
+(react-native swipe) https://github.com/leecade/react-native-swiper  
   
 ### Delete Navigation Stack History
-https://github.com/react-navigation/react-navigation/issues/295
+https://github.com/react-navigation/react-navigation/issues/295  

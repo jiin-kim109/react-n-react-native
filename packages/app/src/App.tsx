@@ -9,7 +9,8 @@ import { RootStore, ServiceInjector } from "@act/controllers";
 import HomeScreen from "./components/HomeScreen";
 import LandingPage from "./components/landing/LandingPage";
 import SurveyPage from "./components/landing/SurveyPage";
-import SamplePlatformService from './services/SamplePlatformService';
+import SamplePlatformService from "./services/SamplePlatformService";
+//import SamplePlatformService from './services/SamplePlatformService';
 
 // Set prop types for each route
 // undefine means the route has no param
@@ -24,9 +25,16 @@ const Stack = createStackNavigator<RootStackParamList>();
 class App extends Component {
   private rootStore: RootStore = new RootStore();
 
-  componentWillMount(){
+  _registerPlatformServices(){
     ServiceInjector.set('SamplePlatformService', new SamplePlatformService());
-    console.log("COMPONENT MOUNT");
+    console.log(
+      "SERVICE INJECTOR_TEST OUTPUT:: " + "\n" +
+      ServiceInjector.get('SampleService').getName() + " " + ServiceInjector.get('SamplePlatformService').getName()
+    );    
+  }
+
+  componentDidMount(){
+    this._registerPlatformServices();
   }
 
   render() {
