@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { FunctionComponent, useRef, useState, useEffect } from "react";
+import { LinearGradient } from "expo-linear-gradient";
 import { 
     Text, 
     StyleSheet, 
@@ -9,17 +10,19 @@ import {
     TouchableOpacity,
     GestureResponderEvent
  } from "react-native";
- import { LinearGradient } from "expo-linear-gradient";
+ import * as GradientStyle from "./styles/gradient";
 
-interface withTouchableGradientProps {
-  onPress: (e?:GestureResponderEvent) => void
-  colors: Array<string>
-  start: { x:number, y:number }
-  end: { x:number, y:number }
-  locations?: Array<number>
+interface withTouchableProps {
+  onPress?: (e?:GestureResponderEvent) => void
   style: ViewStyle
+  colors?: Array<string>,
+  start?: { x: number, y: number },
+  end?: { x: number, y: number },
+  locations?: Array<number>,      
+  gradientPreset?: GradientStyle.GradientPresetType
 }
-export const WithTouchableGradient: FunctionComponent<withTouchableGradientProps> = (props) => {
+export const WithTouchableGradient: FunctionComponent<withTouchableProps> = (props) => {
+  const { colors, start, end, locations } = props.gradientPreset ? props.gradientPreset : props;
   return (
       <TouchableOpacity 
         style={{alignItems: 'center'}}
@@ -27,14 +30,18 @@ export const WithTouchableGradient: FunctionComponent<withTouchableGradientProps
         delayPressIn={0}
       >
         <LinearGradient
-          colors={props.colors}
-          start={props.start}
-          end={props.end}
           style={props.style}
-          locations={props.locations}
+          colors={colors ? colors : []}
+          start={start}
+          end={end}
+          locations={locations}
         >
             {props.children}
         </LinearGradient>
       </TouchableOpacity>
   )
 }
+WithTouchableGradient.defaultProps = {
+  onPress: () => {},
+  ...GradientStyle.PresetOne
+} as Partial<withTouchableProps>

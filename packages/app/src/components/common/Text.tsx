@@ -7,10 +7,10 @@ import {
     Animated,
  } from "react-native"; 
 
-interface withBaseFontTextProps {
+interface withFontTextProps {
     style: TextStyle
 }
-export const WithBaseFontText: FunctionComponent<withBaseFontTextProps> = ({ children, style }) => {
+export const WithFontText: FunctionComponent<withFontTextProps> = ({ children, style }) => {
     return (
         <Text style={{ ...style, fontFamily: 'Kufam-Italic-VariableFont_wght' }}>
           {children}

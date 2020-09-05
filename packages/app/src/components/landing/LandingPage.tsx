@@ -12,7 +12,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 
 import { LinearGradient } from "expo-linear-gradient";
 import { RootStackParamList } from "../../App";
-import { WithBaseFontText } from "../common/Text";
+import { WithFontText } from "../common/Text";
 import { WithTouchableGradient } from "../common/Hoc";
 
 interface LandingProps {
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   button: {
     width: "70%",
     height: 45,
-    marginTop: 15,
+    marginTop: 30,
     borderRadius: 10,
     justifyContent: "center",
   },
@@ -72,7 +72,7 @@ const LandingPage = ({ navigation }: LandingProps) => {
           end={[0.0, 0.4]}
           style={styles.topView}
         >
-          <WithBaseFontText style={styles.title}>Action</WithBaseFontText>
+          <WithFontText style={styles.title}>Action</WithFontText>
         </LinearGradient>
         <LinearGradient
           colors={["rgba(255,255,255,0.1)", "rgba(255,255,255,1.0)"]}
@@ -83,14 +83,8 @@ const LandingPage = ({ navigation }: LandingProps) => {
           <WithTouchableGradient
             style={styles.button}
             onPress={() => navigation.navigate("Survey")}
-            colors={["#40a8c4", "#07689f", "#192f6a"]}
-            start={{ x: 0.4, y: 0.1 }}
-            end={{ x: 0.8, y: 1.0 }}
-            locations={[0, 0.65, 0.85]}
           >
-            <WithBaseFontText style={styles.button_text}>
-              Get Started
-            </WithBaseFontText>
+            <WithFontText style={styles.button_text}>Get Started</WithFontText>
           </WithTouchableGradient>
         </LinearGradient>
       </ImageBackground>

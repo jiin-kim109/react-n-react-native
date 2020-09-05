@@ -12,8 +12,9 @@ import {
 import { StackNavigationProp } from "@react-navigation/stack";
 import Swiper from "react-native-swiper";
 
-import { WithBaseFontText, WithCustomFontText } from "../common/Text";
+import { WithFontText, WithCustomFontText } from "../common/Text";
 import { WithTouchableGradient } from "../common/Hoc";
+import { PresetTwo } from "../common/styles/gradient";
 import { RootStackParamList } from "../../App";
 
 const styles = StyleSheet.create({
@@ -93,14 +94,11 @@ export default function SurveyPage({ navigation }: SurveyProps) {
           onPress={() => {
             console.log("test");
           }}
-          colors={["#40a8c4", "#07689f", "#192f6a"]}
-          start={{ x: 0.4, y: 0.1 }}
-          end={{ x: 0.8, y: 1.0 }}
-          locations={[0, 0.65, 0.85]}
+          gradientPreset={PresetTwo}
         >
-          <WithBaseFontText style={styles.continueButtonText}>
-            Get Started
-          </WithBaseFontText>
+          <WithFontText style={styles.continueButtonText}>
+            Continue
+          </WithFontText>
         </WithTouchableGradient>
       </View>
     </Container>
