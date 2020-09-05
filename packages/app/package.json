@@ -17,6 +17,7 @@
     "@act/controllers": "1.0.0",
     "@expo/vector-icons": "expo/vector-icons",
     "@react-native-community/masked-view": "react-native-community/react-native-masked-view",
+    "@react-navigation/bottom-tabs": "^5.8.0",
     "@react-navigation/native": "^5.7.3",
     "@react-navigation/stack": "^5.9.0",
     "expo": "^38.0.9",

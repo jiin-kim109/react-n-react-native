@@ -15,7 +15,7 @@ import HomeScreen from "./components/HomeScreen";
 import LandingPage from "./components/landing/LandingPage";
 import SurveyPage from "./components/landing/SurveyPage";
 import SamplePlatformService from "./services/SamplePlatformService";
-
+import HomeTab from "./components/HomeTab";
 // Set prop types for each route
 // undefine means the route has no param
 // union (e.g. param | undefined) means that the params are optional
@@ -31,6 +31,8 @@ interface Props {
 
 interface State {
   assetLoaded: boolean;
+  signedIn: boolean;
+  signInTestMode : boolean;
 }
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -41,6 +43,8 @@ class App extends Component<Props, State> {
     super(props);
     this.state = {
       assetLoaded: false,
+      signedIn: false,
+      signInTestMode: true
     };
   }
 
@@ -50,6 +54,7 @@ class App extends Component<Props, State> {
       "Kufam-Italic-VariableFont_wght": require("../assets/fonts/Kufam-Italic-VariableFont_wght.ttf"),
     });
     this.setState({ assetLoaded: true });
+    this.setState({signedIn: true}); // TEST - Signed up 
   }
 
   registerPlatformServices = () => {
@@ -60,11 +65,27 @@ class App extends Component<Props, State> {
   };
 
   render() {
-    const { assetLoaded } = this.state;
+    const { assetLoaded, signedIn, signInTestMode } = this.state;
+    if (signInTestMode) {
+      return (
+        <>
+        
+        </>
+      )
+    }
     if (!assetLoaded) {
       return (
         <Image style={{ flex: 1 }} source={require("../assets/splash.png")} />
       );
+    }
+    if (signedIn) {
+      return (
+        <Provider rootStore={this.rootStore}>
+          <NavigationContainer>
+            <HomeTab/>
+          </NavigationContainer>
+        </Provider>
+      )
     }
     return (
       <Provider rootStore={this.rootStore}>
