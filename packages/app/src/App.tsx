@@ -4,11 +4,13 @@ import { Provider } from "mobx-react";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { 
-  RootStore, 
-  ServiceInjector, 
-  SERVICE_SAMPLE_PLATFORM_TOKEN 
+import {
+  RootStore,
+  ServiceInjector,
+  SERVICE_SAMPLE_PLATFORM_TOKEN,
 } from "@act/controllers";
+import * as Font from "expo-font";
+import { Image } from "react-native";
 
 import HomeScreen from "./components/HomeScreen";
 import LandingPage from "./components/landing/LandingPage";
@@ -24,19 +26,43 @@ export type RootStackParamList = {
   Home: undefined;
 };
 
+interface State {
+  assetLoaded: boolean;
+}
+
 const Stack = createStackNavigator<RootStackParamList>();
-class App extends Component {
+class App extends Component<unknown, State> {
   private rootStore: RootStore = new RootStore();
 
-  _registerPlatformServices(){
-    ServiceInjector.set(SERVICE_SAMPLE_PLATFORM_TOKEN, new SamplePlatformService());
+  constructor() {
+    super(null);
+    this.state = {
+      assetLoaded: false,
+    };
   }
 
-  componentDidMount(){
-    this._registerPlatformServices();
+  async componentDidMount() {
+    this.registerPlatformServices();
+    await Font.loadAsync({
+      "Kufam-Italic-VariableFont_wght": require("../assets/fonts/Kufam-Italic-VariableFont_wght.ttf"),
+    });
+    this.setState({ assetLoaded: true });
   }
+
+  registerPlatformServices = () => {
+    ServiceInjector.set(
+      SERVICE_SAMPLE_PLATFORM_TOKEN,
+      new SamplePlatformService()
+    );
+  };
 
   render() {
+    const { assetLoaded } = this.state;
+    if (!assetLoaded) {
+      return (
+        <Image style={{ flex: 1 }} source={require("../assets/splash.png")} />
+      );
+    }
     return (
       <Provider rootStore={this.rootStore}>
         <NavigationContainer>
