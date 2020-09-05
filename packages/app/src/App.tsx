@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { registerRootComponent } from "expo";
 import { Provider } from "mobx-react";
-import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import {
@@ -26,16 +25,20 @@ export type RootStackParamList = {
   Home: undefined;
 };
 
+interface Props {
+  dummy: string;
+}
+
 interface State {
   assetLoaded: boolean;
 }
 
 const Stack = createStackNavigator<RootStackParamList>();
-class App extends Component<unknown, State> {
+class App extends Component<Props, State> {
   private rootStore: RootStore = new RootStore();
 
-  constructor() {
-    super(null);
+  constructor(props: Props) {
+    super(props);
     this.state = {
       assetLoaded: false,
     };

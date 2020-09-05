@@ -9,11 +9,11 @@ import {
 } from "react-native";
 import { Button } from "native-base";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { StatusBar } from "expo-status-bar";
 
 import { LinearGradient } from "expo-linear-gradient";
 import { RootStackParamList } from "../../App";
-import { WithBaseFontText } from "../../util/hoc";
+import { WithBaseFontText } from "../common/Text";
+import { WithTouchableGradient } from "../common/Hoc";
 
 interface LandingProps {
   navigation: StackNavigationProp<RootStackParamList, "Landing">;
@@ -42,13 +42,10 @@ const styles = StyleSheet.create({
   bottomView: {
     flex: 1,
   },
-  touchableOpacity: {
-    alignItems: "center",
-  },
   button: {
     width: "70%",
     height: 45,
-    marginTop: 10,
+    marginTop: 15,
     borderRadius: 10,
     justifyContent: "center",
   },
@@ -62,7 +59,6 @@ const styles = StyleSheet.create({
 const LandingPage = ({ navigation }: LandingProps) => {
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
       <ImageBackground
         style={{ width: "100%", height: "100%", opacity: 1.0 }}
         source={{
@@ -84,26 +80,22 @@ const LandingPage = ({ navigation }: LandingProps) => {
           end={[0.0, 0.5]}
           style={styles.bottomView}
         >
-          <TouchableOpacity
-            style={styles.touchableOpacity}
+          <WithTouchableGradient
+            style={styles.button}
             onPress={() => navigation.navigate("Survey")}
-            delayPressIn={0}
+            colors={["#40a8c4", "#07689f", "#192f6a"]}
+            start={{ x: 0.4, y: 0.1 }}
+            end={{ x: 0.8, y: 1.0 }}
+            locations={[0, 0.65, 0.85]}
           >
-            <LinearGradient
-              colors={["#40a8c4", "#07689f", "#192f6a"]}
-              start={{ x: 0.4, y: 0.1 }}
-              end={{ x: 0.8, y: 1.0 }}
-              locations={[0, 0.65, 0.85]}
-              style={styles.button}
-            >
-              <WithBaseFontText style={styles.button_text}>
-                Get Started
-              </WithBaseFontText>
-            </LinearGradient>
-          </TouchableOpacity>
+            <WithBaseFontText style={styles.button_text}>
+              Get Started
+            </WithBaseFontText>
+          </WithTouchableGradient>
         </LinearGradient>
       </ImageBackground>
     </View>
   );
 };
 export default LandingPage;
+// onPress={() => navigation.navigate("Survey")}

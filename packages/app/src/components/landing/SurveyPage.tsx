@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Text, Image, ImageBackground } from "react-native";
+import React, { Component, FunctionComponent } from "react";
+import { StyleSheet, View, Text, Image } from "react-native";
 import {
   Container,
   Card,
@@ -12,149 +12,97 @@ import {
 import { StackNavigationProp } from "@react-navigation/stack";
 import Swiper from "react-native-swiper";
 
+import { WithBaseFontText, WithCustomFontText } from "../common/Text";
+import { WithTouchableGradient } from "../common/Hoc";
 import { RootStackParamList } from "../../App";
 
-interface SlideProps {
+const styles = StyleSheet.create({
+  swiper: {
+    flex: 3,
+  },
+  bottomView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  slide: {
+    flex: 1,
+  },
+  sliderHeader: {
+    flex: 1,
+  },
+  sliderBody: {
+    flex: 4,
+  },
+  sliderTitle: {
+    fontSize: 18,
+    textAlign: "center",
+    color: "black",
+  },
+  continueButton: {
+    width: "70%",
+    height: 45,
+    marginTop: 10,
+    borderRadius: 10,
+    justifyContent: "center",
+  },
+  continueButtonText: {
+    fontSize: 18,
+    textAlign: "center",
+    color: "white",
+  },
+});
+
+interface SurveySlideProps {
   title: string;
-  text: string;
-  backgroundImgUrl?: string;
-  selectionOptions?: Array<{ optionText: string; img: string }>;
 }
+
+const SurveySlide: FunctionComponent<SurveySlideProps> = (
+  props: SurveySlideProps
+) => {
+  const { title } = props;
+  return (
+    <View style={{ flex: 1 }}>
+      <View style={styles.sliderHeader}>
+        <WithCustomFontText
+          style={styles.sliderTitle}
+          fontFamily="Kufam-Italic-VariableFont_wght"
+        >
+          {title}
+        </WithCustomFontText>
+      </View>
+      <View style={styles.sliderBody} />
+    </View>
+  );
+};
 
 interface SurveyProps {
   navigation: StackNavigationProp<RootStackParamList, "Survey">;
 }
 
-const styles = StyleSheet.create({
-  wrapper: {},
-  slide: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#9DD6EB",
-  },
-  text: {
-    color: "#fff",
-    fontSize: 30,
-    fontWeight: "bold",
-  },
-});
-
-function Slide({
-  title,
-  text,
-  backgroundImgUrl,
-  selectionOptions,
-}: SlideProps) {
-  return (
-    <View style={styles.slide}>
-      <ImageBackground
-        style={{ width: "100%", height: "100%" }}
-        source={{ uri: backgroundImgUrl }}
-      >
-        <View>
-          <Text style={styles.text}>{title}</Text>
-        </View>
-        <View>
-          <Text>{text}</Text>
-        </View>
-        <Content>
-          {selectionOptions?.map((option) => {
-            <Button style={{ height: 100 }}>
-              <Card>
-                <CardItem cardBody>
-                  <Image source={{ uri: option.img }} style={{ height: 70 }} />
-                </CardItem>
-                <CardItem>
-                  <Text>{option.optionText}</Text>
-                </CardItem>
-              </Card>
-            </Button>;
-          })}
-        </Content>
-      </ImageBackground>
-    </View>
-  );
-}
-
 export default function SurveyPage({ navigation }: SurveyProps) {
   return (
     <Container>
-      <Swiper style={styles.wrapper}>
-        <View style={styles.slide}>
-          <Slide
-            title="The fastest way to meet new people"
-            text="Have a better social life in a single tap"
-            backgroundImgUrl="https://scx1.b-cdn.net/csz/news/800/2018/cardiacarres.jpg"
-          />
-        </View>
-        <View style={styles.slide}>
-          <Slide
-            title="Let us know who you are"
-            text="Now tell me... what are your favorite sports?"
-            selectionOptions={[
-              {
-                optionText: "Soccer",
-                img:
-                  "https://image.freepik.com/free-vector/doodle-soccer-ball_1034-741.jpg",
-              },
-              {
-                optionText: "Basketball",
-                img:
-                  "https://cdn.pixabay.com/photo/2013/07/12/14/07/basketball-147794_1280.png",
-              },
-              {
-                optionText: "Tennis",
-                img:
-                  "https://cdn.pixabay.com/photo/2017/01/31/15/31/tennis-2025095_1280.png",
-              },
-              {
-                optionText: "Hockey",
-                img:
-                  "https://cdn.pixabay.com/photo/2016/06/24/16/49/hockey-puck-1477440_1280.png",
-              },
-              {
-                optionText: "Baseball",
-                img:
-                  "https://cdn.pixabay.com/photo/2012/04/18/23/13/baseball-38208_1280.png",
-              },
-            ]}
-          />
-        </View>
-        <View style={styles.slide}>
-          <Slide
-            title="Let us know who you are"
-            text="Okay! Now choose everything you loves"
-            selectionOptions={[
-              {
-                optionText: "coffee",
-                img:
-                  "https://cdn.pixabay.com/photo/2013/07/13/09/51/coffee-156144_1280.png",
-              },
-              {
-                optionText: "book",
-                img:
-                  "https://cdn.pixabay.com/photo/2017/01/31/00/09/book-2022464_1280.png",
-              },
-              {
-                optionText: "Yoga",
-                img:
-                  "https://cdn.pixabay.com/photo/2014/04/03/10/38/yoga-310940_1280.png",
-              },
-              {
-                optionText: "fitness",
-                img:
-                  "https://cdn.pixabay.com/photo/2016/06/24/16/49/hockey-puck-1477440_1280.png",
-              },
-              {
-                optionText: "Baseball",
-                img:
-                  "https://cdn.pixabay.com/photo/2012/04/18/23/13/baseball-38208_1280.png",
-              },
-            ]}
-          />
-        </View>
+      <Swiper style={styles.swiper} showsButtons>
+        <View style={styles.slide} />
+        <View style={styles.slide} />
       </Swiper>
+      <View style={styles.bottomView}>
+        <WithTouchableGradient
+          style={styles.continueButton}
+          onPress={() => {
+            console.log("test");
+          }}
+          colors={["#40a8c4", "#07689f", "#192f6a"]}
+          start={{ x: 0.4, y: 0.1 }}
+          end={{ x: 0.8, y: 1.0 }}
+          locations={[0, 0.65, 0.85]}
+        >
+          <WithBaseFontText style={styles.continueButtonText}>
+            Get Started
+          </WithBaseFontText>
+        </WithTouchableGradient>
+      </View>
     </Container>
   );
 }
