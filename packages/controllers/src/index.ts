@@ -1,4 +1,6 @@
+import "reflect-metadata";
 export * from "./store/RootStore";
-export * from "./firebase/firebase";
 
-export const testImport = 5;
+export * from "./services/ServiceInjector";
+export * from "./services/SampleService";
+export * from "./services/SamplePlatformService";

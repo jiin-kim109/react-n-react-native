@@ -4,12 +4,16 @@ import { Provider } from "mobx-react";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { 
+  RootStore, 
+  ServiceInjector, 
+  SERVICE_SAMPLE_PLATFORM_TOKEN 
+} from "@act/controllers";
 
-import { RootStore } from "@act/controllers";
-import { Root } from "native-base";
 import HomeScreen from "./components/HomeScreen";
 import LandingPage from "./components/landing/LandingPage";
 import SurveyPage from "./components/landing/SurveyPage";
+import SamplePlatformService from "./services/SamplePlatformService";
 
 // Set prop types for each route
 // undefine means the route has no param
@@ -23,6 +27,14 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 class App extends Component {
   private rootStore: RootStore = new RootStore();
+
+  _registerPlatformServices(){
+    ServiceInjector.set(SERVICE_SAMPLE_PLATFORM_TOKEN, new SamplePlatformService());
+  }
+
+  componentDidMount(){
+    this._registerPlatformServices();
+  }
 
   render() {
     return (
