@@ -32,7 +32,6 @@ interface Props {
 interface State {
   assetLoaded: boolean;
   signedIn: boolean;
-  signInTestMode : boolean;
 }
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -44,7 +43,6 @@ class App extends Component<Props, State> {
     this.state = {
       assetLoaded: false,
       signedIn: false,
-      signInTestMode: true
     };
   }
 
@@ -65,14 +63,7 @@ class App extends Component<Props, State> {
   };
 
   render() {
-    const { assetLoaded, signedIn, signInTestMode } = this.state;
-    if (signInTestMode) {
-      return (
-        <>
-        
-        </>
-      )
-    }
+    const { assetLoaded, signedIn } = this.state;
     if (!assetLoaded) {
       return (
         <Image style={{ flex: 1 }} source={require("../assets/splash.png")} />
