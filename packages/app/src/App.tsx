@@ -31,7 +31,6 @@ interface Props {
 
 interface State {
   assetLoaded: boolean;
-  signedIn: boolean;
 }
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -42,7 +41,6 @@ class App extends Component<Props, State> {
     super(props);
     this.state = {
       assetLoaded: false,
-      signedIn: false,
     };
   }
 
@@ -52,7 +50,6 @@ class App extends Component<Props, State> {
       "Kufam-Italic-VariableFont_wght": require("../assets/fonts/Kufam-Italic-VariableFont_wght.ttf"),
     });
     this.setState({ assetLoaded: true });
-    this.setState({signedIn: true}); // TEST - Signed up 
   }
 
   registerPlatformServices = () => {
@@ -63,20 +60,11 @@ class App extends Component<Props, State> {
   };
 
   render() {
-    const { assetLoaded, signedIn } = this.state;
+    const { assetLoaded } = this.state;
     if (!assetLoaded) {
       return (
         <Image style={{ flex: 1 }} source={require("../assets/splash.png")} />
       );
-    }
-    if (signedIn) {
-      return (
-        <Provider rootStore={this.rootStore}>
-          <NavigationContainer>
-            <HomeTab/>
-          </NavigationContainer>
-        </Provider>
-      )
     }
     return (
       <Provider rootStore={this.rootStore}>

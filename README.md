@@ -41,8 +41,7 @@ yarn
 - React web app  
     
 ```
-cd packages  
-cd web  
+cd packages/web  
 yarn start
 ```
   
@@ -50,9 +49,10 @@ yarn start
   
 The command will open expo dev server (default=localhost:19002)  
 ```
-cd packages  
-cd app  
+cd packages/app  
 expo start  
+//or
+./appstart.sh
 ```
   
 2. Build the application
@@ -79,8 +79,7 @@ yarn build:app:ios
 * Test common components & controller  
   
 ```
-cd packages  
-cd common  
+cd packages/controllers  
 yarn jest  
 ```
   

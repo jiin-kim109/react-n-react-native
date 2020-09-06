@@ -86,6 +86,12 @@ const LandingPage = ({ navigation }: LandingProps) => {
           >
             <WithFontText style={styles.button_text}>Get Started</WithFontText>
           </WithTouchableGradient>
+          <WithTouchableGradient
+            style={styles.button}
+            onPress={() => navigation.navigate("Home")}
+          >
+            <WithFontText style={styles.button_text}>Get Started</WithFontText>
+          </WithTouchableGradient>
         </LinearGradient>
       </ImageBackground>
     </View>

@@ -16,7 +16,7 @@ export const WithFontText: FunctionComponent<withFontTextProps> = ({ children, s
           {children}
         </Text>
     )
-
+}
 
 interface withCustomFontTextProps {
     style: TextStyle

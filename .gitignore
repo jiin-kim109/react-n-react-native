@@ -12,6 +12,7 @@ web-build/
 packages/app/node_modules/**/*
 packages/controller/node_modules/**/*
 packages/web/node_modules/**/*
+packages/app/.expo
 .vscode
 
 # macOS
