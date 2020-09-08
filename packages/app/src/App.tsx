@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from "react";
 import { registerRootComponent } from "expo";
 import { Provider } from "mobx-react";
@@ -10,11 +11,13 @@ import {
 } from "@act/controllers";
 import * as Font from "expo-font";
 import { Image } from "react-native";
+import { StatusBar } from 'expo-status-bar';
 
 import LandingPage from "./components/landing/LandingPage";
 import SurveyPage from "./components/landing/SurveyPage";
 import SamplePlatformService from "./services/SamplePlatformService";
 import HomeTab from "./components/HomeTab";
+
 // Set prop types for each route
 // undefine means the route has no param
 // union (e.g. param | undefined) means that the params are optional
@@ -46,7 +49,8 @@ class App extends Component<Props, State> {
   async componentDidMount() {
     this.registerPlatformServices();
     await Font.loadAsync({
-      "Kufam-Italic-VariableFont_wght": require("../assets/fonts/Kufam-Italic-VariableFont_wght.ttf"),
+      "OpenSans-Regular": require("../assets/fonts/OpenSans-Regular.ttf"),
+      "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
     });
     this.setState({
       loadEssentials: true,
@@ -69,6 +73,7 @@ class App extends Component<Props, State> {
     }
     return (
       <Provider rootStore={this.rootStore}>
+        <StatusBar style="light" backgroundColor="black"/>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Landing">
             <Stack.Screen

@@ -1,106 +1,234 @@
-import React, { Component, FunctionComponent } from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
-import {
-  Container,
-  Card,
-  CardItem,
-  Button,
-  Right,
-  Icon,
-  Content,
-} from "native-base";
+import React, { useState, useRef } from "react";
+import { StyleSheet, View } from "react-native";
+
 import { StackNavigationProp } from "@react-navigation/stack";
 import Swiper from "react-native-swiper";
+import { ProgressBar } from "react-native-paper";
 
-import { WithFontText, WithCustomFontText } from "../common/Text";
-import { WithTouchableGradient } from "../common/Hoc";
-import { PresetTwo } from "../common/styles/gradient";
 import { RootStackParamList } from "../../App";
+import SurveySlide, {
+  SingleChoice,
+  MultiChoice,
+  MultiChoiceList,
+} from "./SurveySlide";
+import * as Common from "../common/Common";
 
 const styles = StyleSheet.create({
-  swiper: {
-    flex: 3,
+  container: {
+    flex: 1,
+    backgroundColor: Common.Color.White,
+  },
+  headerView: {
+    flex: 1,
+  },
+  surveyBody: {
+    flex: 6,
   },
   bottomView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    flex: 1.1,
   },
   slide: {
     flex: 1,
   },
-  sliderHeader: {
-    flex: 1,
-  },
-  sliderBody: {
-    flex: 4,
-  },
-  sliderTitle: {
-    fontSize: 18,
-    textAlign: "center",
-    color: "black",
-  },
   continueButton: {
-    width: "70%",
-    height: 45,
-    marginTop: 10,
-    borderRadius: 10,
+    height: 60,
+    marginHorizontal: 50,
+    borderRadius: 30,
     justifyContent: "center",
-  },
-  continueButtonText: {
-    fontSize: 18,
-    textAlign: "center",
-    color: "white",
   },
 });
 
-interface SurveySlideProps {
-  title: string;
+interface SurveyData {
+  key: string;
+  items: Array<string>;
+  surveyIdx: number;
 }
-
-const SurveySlide: FunctionComponent<SurveySlideProps> = (
-  props: SurveySlideProps
-) => {
-  const { title } = props;
-  return (
-    <View style={{ flex: 1 }}>
-      <View style={styles.sliderHeader}>
-        <WithCustomFontText
-          style={styles.sliderTitle}
-          fontFamily="Kufam-Italic-VariableFont_wght"
-        >
-          {title}
-        </WithCustomFontText>
-      </View>
-      <View style={styles.sliderBody} />
-    </View>
-  );
-};
 
 interface SurveyProps {
   navigation: StackNavigationProp<RootStackParamList, "Survey">;
 }
 
+const numOfSlides = 3;
+
 export default function SurveyPage({ navigation }: SurveyProps) {
+  const [activeIdx, setIdx] = useState(0);
+  const [isNextAllowed, allowNext] = useState(false);
+  const [currSurveyToStore, reserveSurveyToStore] = useState<SurveyData>({
+    key: "",
+    items: [],
+    surveyIdx: -1,
+  });
+  const [progress, setProgress] = useState(1.0 / numOfSlides);
+  const swiperRef = useRef<Swiper>(null);
+
+  const onItemSelected = (key: string, items: Array<string>) => {
+    reserveSurveyToStore({ key, items, surveyIdx: activeIdx });
+    items.length > 0 ? allowNext(true) : allowNext(false);
+  };
+
+  const onSkipPage = () => {
+    const swiper = swiperRef.current;
+    if (activeIdx < numOfSlides - 1) {
+      setProgress(progress + 1.0 / numOfSlides);
+      swiper?.scrollBy(1, true);
+    }
+  };
+
+  const onPrevPage = () => {
+    const swiper = swiperRef.current;
+    if (activeIdx > 0) {
+      if (currSurveyToStore.surveyIdx >= activeIdx - 1) {
+        allowNext(true);
+      }
+      setProgress(progress - 1.0 / numOfSlides);
+      swiper?.scrollBy(-1, true);
+    }
+  };
+
+  const onPressContinue = () => {
+    if (activeIdx >= numOfSlides - 1) {
+      navigation.navigate("Home");
+      return;
+    }
+    onSkipPage();
+    allowNext(false);
+    const { key, items } = currSurveyToStore;
+    // asyncStorage.save({ key, items });
+    console.log(key, items);
+  };
+
   return (
-    <Container>
-      <Swiper style={styles.swiper} showsButtons>
-        <View style={styles.slide} />
-        <View style={styles.slide} />
-      </Swiper>
-      <View style={styles.bottomView}>
-        <WithTouchableGradient
-          style={styles.continueButton}
-          onPress={() => {
-            console.log("test");
+    <View style={styles.container}>
+      <View style={styles.headerView}>
+        <ProgressBar
+          style={{ height: 31 }}
+          progress={progress}
+          color={Common.Color.PrimaryGreen}
+        />
+        <View
+          style={{
+            justifyContent: "space-between",
+            flexDirection: "row",
+            paddingHorizontal: 17,
           }}
-          gradientPreset={PresetTwo}
         >
-          <WithFontText style={styles.continueButtonText}>
-            Continue
-          </WithFontText>
-        </WithTouchableGradient>
+          <Common.FontText
+            fontType="header"
+            style={{ marginTop: -15, fontSize: 60 }}
+            onPress={() => onPrevPage()}
+          >
+            ‹
+          </Common.FontText>
+          <Common.FontText
+            fontType="header"
+            style={{ marginTop: 15, fontSize: 20 }}
+            onPress={() => onSkipPage()}
+          >
+            SKIP
+          </Common.FontText>
+        </View>
       </View>
-    </Container>
+      <View style={styles.surveyBody}>
+        <Swiper
+          ref={swiperRef}
+          loop={false}
+          index={0}
+          scrollEnabled={false}
+          showsPagination={false}
+          onIndexChanged={(idx) => {
+            setIdx(idx);
+            if (currSurveyToStore.surveyIdx < idx) allowNext(false);
+            else allowNext(true);
+          }}
+        >
+          <View style={styles.slide}>
+            <SurveySlide description={{ title: "I am a", subtitle: "" }}>
+              <SingleChoice
+                onItemSelected={onItemSelected}
+                survey={{
+                  key: "gender",
+                  items: ["WOMAN", "MAN", "MORE"],
+                }}
+              />
+            </SurveySlide>
+          </View>
+          <View style={styles.slide}>
+            <SurveySlide
+              description={{
+                title: "Passions",
+                subtitle:
+                  "Let everyone know what you're passionate about by adding it to your profile.",
+              }}
+            >
+              <MultiChoice
+                onItemSelected={onItemSelected}
+                survey={{
+                  key: "passions",
+                  items: [
+                    "Disney",
+                    "Athlete",
+                    "Instagram",
+                    "Working Out",
+                    "Soccer",
+                    "Grab a drink",
+                    "DIY",
+                    "Swimming",
+                    "Music",
+                    "Walking",
+                  ],
+                }}
+              />
+            </SurveySlide>
+          </View>
+          <View style={styles.slide}>
+            <SurveySlide
+              description={{
+                title: "My sexual orientation is",
+                subtitle: "Select up to 3",
+              }}
+            >
+              <MultiChoiceList
+                onItemSelected={onItemSelected}
+                maxChoiceNum={3}
+                survey={{
+                  key: "sexualOrientation",
+                  items: [
+                    "Straight",
+                    "Gay",
+                    "Lesbian",
+                    "Bisexual",
+                    "Asexual",
+                    "Demisexual",
+                    "Transgender",
+                    "Hetero",
+                  ],
+                }}
+              />
+            </SurveySlide>
+          </View>
+        </Swiper>
+      </View>
+      <View style={styles.bottomView}>
+        {isNextAllowed ? (
+          <Common.TouchableGradient
+            style={styles.continueButton}
+            onPress={onPressContinue}
+            gradientPreset="preset_2"
+            isShadow
+          >
+            <Common.FontText
+              style={{ textAlign: "center", color: "white" }}
+              fontType="header_2"
+            >
+              CONTINUE
+            </Common.FontText>
+          </Common.TouchableGradient>
+        ) : (
+          <Common.DisabledButton style={styles.continueButton}>
+            CONTINUE
+          </Common.DisabledButton>
+        )}
+      </View>
+    </View>
   );
 }

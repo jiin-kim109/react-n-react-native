@@ -115,3 +115,9 @@ https://medium.com/@dushyant_db/how-to-import-files-from-outside-of-root-directo
   
 ### Delete Navigation Stack History
 https://github.com/react-navigation/react-navigation/issues/295  
+
+### Mobx Serializr
+https://github.com/mobxjs/serializr  
+
+### AsyncStorage
+https://github.com/react-native-community/async-storage
