@@ -22,11 +22,10 @@ module.exports = {
       'react/jsx-filename-extension': 'off',
       'import/extensions': 'off',
       'import/no-unresolved': 'off',
-      'linebreak-style': 'off',
       'global-require': 'off',
       'react/prop-types': 'off',
       'react/destructuring-assignment': 'off',
       'no-bitwise': 'off',
-      'no-unused-expressions': 'off'
+      'react/display-name': 'off'
     },
   };
