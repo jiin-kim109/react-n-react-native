@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from "react";
 import { registerRootComponent } from "expo";
 import { Provider } from "mobx-react";
@@ -10,11 +11,12 @@ import {
 } from "@act/controllers";
 import * as Font from "expo-font";
 import { Image } from "react-native";
+import { StatusBar } from 'expo-status-bar';
 
-import HomeScreen from "./components/HomeScreen";
 import LandingPage from "./components/landing/LandingPage";
 import SurveyPage from "./components/landing/SurveyPage";
 import SamplePlatformService from "./services/SamplePlatformService";
+import HomeTab from "./components/HomeTab";
 
 // Set prop types for each route
 // undefine means the route has no param
@@ -30,7 +32,7 @@ interface Props {
 }
 
 interface State {
-  assetLoaded: boolean;
+  loadEssentials: boolean;
 }
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -40,16 +42,19 @@ class App extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      assetLoaded: false,
+      loadEssentials: false,
     };
   }
 
   async componentDidMount() {
     this.registerPlatformServices();
     await Font.loadAsync({
-      "Kufam-Italic-VariableFont_wght": require("../assets/fonts/Kufam-Italic-VariableFont_wght.ttf"),
+      "OpenSans-Regular": require("../assets/fonts/OpenSans-Regular.ttf"),
+      "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
     });
-    this.setState({ assetLoaded: true });
+    this.setState({
+      loadEssentials: true,
+    });
   }
 
   registerPlatformServices = () => {
@@ -60,14 +65,15 @@ class App extends Component<Props, State> {
   };
 
   render() {
-    const { assetLoaded } = this.state;
-    if (!assetLoaded) {
+    const { loadEssentials } = this.state;
+    if (!loadEssentials) {
       return (
         <Image style={{ flex: 1 }} source={require("../assets/splash.png")} />
       );
     }
     return (
       <Provider rootStore={this.rootStore}>
+        <StatusBar style="light" backgroundColor="black"/>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Landing">
             <Stack.Screen
@@ -84,7 +90,7 @@ class App extends Component<Props, State> {
                 headerShown: false,
               }}
             />
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Home" component={HomeTab} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

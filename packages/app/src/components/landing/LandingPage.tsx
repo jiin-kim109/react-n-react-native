@@ -1,19 +1,10 @@
-import React, { Component } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-} from "react-native";
-import { Button } from "native-base";
+import React from "react";
+import { StyleSheet, View, ImageBackground } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
-
 import { LinearGradient } from "expo-linear-gradient";
+
+import * as Common from "../common/Common";
 import { RootStackParamList } from "../../App";
-import { WithFontText } from "../common/Text";
-import { WithTouchableGradient } from "../common/Hoc";
 
 interface LandingProps {
   navigation: StackNavigationProp<RootStackParamList, "Landing">;
@@ -22,7 +13,7 @@ interface LandingProps {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgb(162, 213, 242)",
+    backgroundColor: Common.Color.Sky,
   },
   topView: {
     flex: 3,
@@ -30,29 +21,24 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 60,
-    color: "white",
-    marginTop: 30,
+    color: Common.Color.White,
+    marginTop: 80,
     textShadowOffset: {
       width: -2,
       height: -2,
     },
-    textShadowColor: "#e0ece4",
+    textShadowColor: Common.Color.Mint,
     textShadowRadius: 10,
   },
   bottomView: {
     flex: 1,
   },
   button: {
-    width: "70%",
-    height: 45,
-    marginTop: 30,
+    height: 60,
+    marginHorizontal: 30,
+    marginTop: 40,
     borderRadius: 10,
     justifyContent: "center",
-  },
-  button_text: {
-    fontSize: 18,
-    textAlign: "center",
-    color: "white",
   },
 });
 
@@ -67,25 +53,39 @@ const LandingPage = ({ navigation }: LandingProps) => {
         }}
       >
         <LinearGradient
-          colors={["rgba(64, 168, 196, 1.0)", "rgba(64, 168, 196, 0.1)"]}
+          colors={[
+            Common.Color.ToRgbA(Common.Color.LightBlue, 1.0),
+            Common.Color.ToRgbA(Common.Color.LightBlue, 0.1),
+          ]}
           start={[0.0, 0.0]}
           end={[0.0, 0.4]}
           style={styles.topView}
         >
-          <WithFontText style={styles.title}>Action</WithFontText>
+          <Common.FontText style={styles.title} fontType="header">
+            Action
+          </Common.FontText>
         </LinearGradient>
         <LinearGradient
-          colors={["rgba(255,255,255,0.1)", "rgba(255,255,255,1.0)"]}
+          colors={[
+            Common.Color.ToRgbA(Common.Color.White, 0.1),
+            Common.Color.ToRgbA(Common.Color.White, 1.0),
+          ]}
           start={[0.0, 0.0]}
           end={[0.0, 0.5]}
           style={styles.bottomView}
         >
-          <WithTouchableGradient
+          <Common.TouchableGradient
             style={styles.button}
             onPress={() => navigation.navigate("Survey")}
+            isShadow
           >
-            <WithFontText style={styles.button_text}>Get Started</WithFontText>
-          </WithTouchableGradient>
+            <Common.FontText
+              style={{ textAlign: "center", color: Common.Color.White }}
+              fontType="header_3"
+            >
+              GET STARTED
+            </Common.FontText>
+          </Common.TouchableGradient>
         </LinearGradient>
       </ImageBackground>
     </View>

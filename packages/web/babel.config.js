@@ -13,7 +13,8 @@ module.exports = function(api) {
           "alias": {
             "^react-native$": "react-native-web"
           }
-        }]
+        }],
+        "@babel/plugin-proposal-export-namespace-from"
       ]
     };
   };
