@@ -25,6 +25,9 @@ export type RootStackParamList = {
   Landing: undefined;
   Survey: undefined;
   Home: undefined;
+  SignIn: undefined; 
+  SignUp: undefined; 
+  ForgotPassword: undefined; 
 };
 
 interface Props {
