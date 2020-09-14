@@ -27,7 +27,7 @@ interface ISignInProps {
     navigation: StackNavigationProp<RootStackParamList, "SignIn">
 }
 
-const SignIn = ({navigation} : ISignInProps) => {
+const SignInScreen = ({navigation} : ISignInProps) => {
     const [passwordVisibility, setPasswordVisibility] = useState(true);
     const [rightIcon, setRightIcon] = useState('eye');
     const [loginError, setLoginError] = useState('');
@@ -67,6 +67,7 @@ const SignIn = ({navigation} : ISignInProps) => {
                     keyboardType="email-address"
                     textContentType="emailAddress"
                     autoFocus={true}
+                    theme={null}
                 />
                 <FormField
                     name="password"
@@ -78,6 +79,7 @@ const SignIn = ({navigation} : ISignInProps) => {
                     textContentType="password"
                     rightIcon={rightIcon}
                     handlePasswordVisibility={handlePasswordVisibility}
+                    theme={null}
                 />
                 <FormButton title={'Login'} />
                 {<FormErrorMessage error={loginError} visible={true} />}
@@ -90,3 +92,5 @@ const SignIn = ({navigation} : ISignInProps) => {
         </View>
     );
 }
+
+export default SignInScreen;

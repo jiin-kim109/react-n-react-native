@@ -1,23 +1,25 @@
 import React, {FunctionComponent} from 'react';
 import { Formik } from 'formik';
+import {IFormFieldProps} from './FormField';
 
 interface IFormProps { 
     children : any;
     initialValues : any; 
     onSubmit : (e: any) => void ; 
-    validationchema: any;
+    validationSchema: any;
+
 }
 
-const Form : FunctionComponent<IFormProps> = (props) => {
+const Form : FunctionComponent<IFormProps> = ({children, initialValues, onSubmit, validationSchema, ...props}) => {
     return (
         <Formik
-            initialValues = {props.initialValues}
-            validationSchema = {props.validationchema}
-            onSubmit={props.onSubmit}
+            initialValues = {initialValues}
+            validationSchema = {validationSchema}
+            onSubmit={onSubmit}
         >
-            {()=> <React.Fragment>{props.children}</React.Fragment>}
+            {()=> <React.Fragment>{children}</React.Fragment>}
         </Formik>
     );
 }
 
-export default From; 
+export default Form; 

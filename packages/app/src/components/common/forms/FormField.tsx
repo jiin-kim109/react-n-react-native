@@ -4,11 +4,17 @@ import { useFormikContext } from 'formik';
 import * as Common from '../Common';
 import FormErrorMessage from './FormErrorMessage';
 
-interface IFormFieldProps extends Common.AppTextInputProps {
+export interface IFormFieldProps extends Common.AppTextInputProps {
     name : string,
-    width? : undefined, 
+    width? : string | undefined, 
     leftIcon : string,
     value? : any,
+    autoCapitalize? : any, 
+    keyboardType? : any, 
+    textContentType? : any,
+    autoFocus? : any,
+    theme : any,
+
 }
 
 const FormField : FunctionComponent<IFormFieldProps> = ({name, width, ...otherProps}) => {
