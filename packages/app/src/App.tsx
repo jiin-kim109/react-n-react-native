@@ -18,6 +18,8 @@ import SurveyPage from "./components/landing/SurveyPage";
 import SamplePlatformService from "./services/SamplePlatformService";
 import HomeTab from "./components/HomeTab";
 import SignInScreen from './components/signin/SignInScreen';
+import SignUpScreen from './components/signin/SignUpScreen';
+import ForgotPasswordScreen from './components/signin/ForgotPasswordScreen';
 // Set prop types for each route
 // undefine means the route has no param
 // union (e.g. param | undefined) means that the params are optional
@@ -95,6 +97,8 @@ class App extends Component<Props, State> {
             />
             <Stack.Screen name="Home" component={HomeTab} />
             <Stack.Screen name="SignIn" component={SignInScreen} />
+            <Stack.Screen name="SignUp" component={SignUpScreen} />
+            <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

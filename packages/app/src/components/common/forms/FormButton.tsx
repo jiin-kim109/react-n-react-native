@@ -23,7 +23,7 @@ const FormButton : FunctionComponent<IFormButton> = (props) => {
         >
           <Common.TouchableGradient
             style={styles.button}
-            onPress={() => {handleSubmit}}
+            onPress={() => {console.log("tada!"); handleSubmit()}}
             isShadow
           >
             <Common.FontText

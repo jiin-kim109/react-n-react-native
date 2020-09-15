@@ -23,6 +23,7 @@ const firebaseConfig = {
 
 if(!firebase.apps.length){
     firebase.initializeApp(firebaseConfig);
+    firebase.auth().signOut(); // TEMPORARY: NEED TO DELETE WHEN Sign In function is fully implemented. 
 }
 const app = firebase.app();
 
@@ -36,8 +37,8 @@ interface IUserInfo {
 const auth = firebase.auth();
 const signInWithEmail = ({email, password}: IUserInfo) => 
     auth.signInWithEmailAndPassword(email, password);
-const registerWithEmail = (user: IUserInfo) => 
-    auth.createUserWithEmailAndPassword(user.email, user.password);
+const registerWithEmail = ({email, password}: IUserInfo) => 
+    auth.createUserWithEmailAndPassword(email, password);
 const logout = () => auth.signOut();
 const passwordReset = (user:IUserInfo) => auth.sendPasswordResetEmail(user.email);
 
@@ -49,4 +50,4 @@ const db = firebase.firestore(app);
 
 
 
-export { app, db, auth, signInWithEmail, registerWithEmail, logout, passwordReset };
+export { app, db, auth, signInWithEmail, registerWithEmail, logout, passwordReset, IUserInfo };
