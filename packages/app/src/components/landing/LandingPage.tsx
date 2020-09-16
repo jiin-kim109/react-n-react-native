@@ -87,6 +87,28 @@ const LandingPage = ({ navigation }: LandingProps) => {
             </Common.FontText>
           </Common.TouchableGradient>
         </LinearGradient>
+        <LinearGradient
+          colors={[
+            Common.Color.ToRgbA(Common.Color.White, 0.1),
+            Common.Color.ToRgbA(Common.Color.White, 1.0),
+          ]}
+          start={[0.0, 0.0]}
+          end={[0.0, 0.5]}
+          style={styles.bottomView}
+        >
+          <Common.TouchableGradient
+            style={styles.button}
+            onPress={() => navigation.navigate("SignIn")}
+            isShadow
+          >
+            <Common.FontText
+              style={{ textAlign: "center", color: Common.Color.White }}
+              fontType="header_3"
+            >
+              Sign In
+            </Common.FontText>
+          </Common.TouchableGradient>
+        </LinearGradient>
       </ImageBackground>
     </View>
   );
