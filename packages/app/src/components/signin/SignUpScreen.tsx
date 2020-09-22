@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from '../../App';
+import * as ReactNativePaper from 'react-native-paper';
 
 import * as Yup from 'yup';
 
@@ -86,7 +87,7 @@ const SignUpScreen = ({navigation}: ISignUpProps) => {
                     leftIcon="account"
                     placeholder="Enter name"
                     autoFocus={true}
-                    theme={null}
+                    theme={ReactNativePaper.DefaultTheme}
                 />
                 <FormField
                     name="email"
@@ -95,7 +96,7 @@ const SignUpScreen = ({navigation}: ISignUpProps) => {
                     autoCapitalize="none"
                     keyboardType="email-address"
                     textContentType="emailAddress"
-                    theme={null}
+                    theme={ReactNativePaper.DefaultTheme}
                 />
                 <FormField
                     name="password"
@@ -107,7 +108,7 @@ const SignUpScreen = ({navigation}: ISignUpProps) => {
                     textContentType="password"
                     rightIcon={rightIcon}
                     handlePasswordVisibility={handlePasswordVisibility}
-                    theme={null}
+                    theme={ReactNativePaper.DefaultTheme}
                 />
                 <FormField
                     name="confirmPassword"
@@ -119,7 +120,7 @@ const SignUpScreen = ({navigation}: ISignUpProps) => {
                     textContentType="password"
                     rightIcon={confirmPasswordIcon}
                     handlePasswordVisibility={handleConfirmPasswordVisibility}
-                    theme={null}
+                    theme={ReactNativePaper.DefaultTheme}
                 />
                 <FormButton title={'Register'} />
                 {<FormErrorMessage error={registerError} visible={true} />}

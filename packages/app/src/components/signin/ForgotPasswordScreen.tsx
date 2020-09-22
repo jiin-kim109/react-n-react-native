@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from '../../App';
+import * as ReactNativePaper from 'react-native-paper';
 
 import * as Yup from 'yup';
 
@@ -49,7 +50,7 @@ const ForgotPasswordScreen = ({navigation} : ISignUpPros) => {
                     keyboardType="email-address"
                     textContentType="emailAddress"
                     autoFocus={true}
-                    theme={null}
+                    theme={ReactNativePaper.DefaultTheme}
                 />
                 <FormButton title="Forgot Password" />
                 {<FormErrorMessage error={customError} visible={true} />}

@@ -3,6 +3,7 @@ import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from '../../App';
 import { LinearGradient } from "expo-linear-gradient";
+import * as ReactNativePaper from 'react-native-paper';
 
 import * as Yup from 'yup';
 
@@ -67,7 +68,7 @@ const SignInScreen = ({navigation} : ISignInProps) => {
                     keyboardType="email-address"
                     textContentType="emailAddress"
                     autoFocus={true}
-                    theme={null}
+                    theme={ReactNativePaper.DefaultTheme}
                 />
                 <FormField
                     name="password"
@@ -79,7 +80,7 @@ const SignInScreen = ({navigation} : ISignInProps) => {
                     textContentType="password"
                     rightIcon={rightIcon}
                     handlePasswordVisibility={handlePasswordVisibility}
-                    theme={null}
+                    theme={ReactNativePaper.DefaultTheme}
                 />
                 <FormButton title={'Login'} />
                 {<FormErrorMessage error={loginError} visible={true} />}

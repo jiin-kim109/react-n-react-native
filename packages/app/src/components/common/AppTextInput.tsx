@@ -10,9 +10,6 @@ export interface AppTextInputProps extends TextInputProps {
     width? : string; 
     rightIcon? : any; 
     handlePasswordVisibility? : (event : GestureResponderEvent) => void ; 
-    //value : any;
-    //onChangeText? : (e: any) => void;
-    //onBlur? : () => void;
 };
 
 export const AppTextInput : FunctionComponent<AppTextInputProps>  = ({
