@@ -4,7 +4,7 @@ import { AsyncStorage } from 'react-native';
 export const CACHE_STORAGE_TOKEN = new Token<string>('CACHE_STORAGE_TOKEN');
 export abstract class CacheStorageServiceInterface {
     // eslint-disable-next-line
-    constructor(src: string) {}
+    constructor() {}
     
     abstract getAllKeys(
         callback?: (error?:Error, keys?: Array<string>) => void
@@ -34,17 +34,25 @@ export abstract class CacheStorageServiceInterface {
         keys : Array<string>,
         callback?: (errors? : Array<Error>, result?: Array<Array<string>>) => void    
     ) : Promise<[string, string][]>;
-
-    // abstract multiSet();
-    // abstract multiRemove();
-    // abstract multiMerge();
+    abstract multiSet(
+        keyValuePairs : Array<Array<string>>, 
+        callback? : (errors? : Array<Error>) => void
+    ) : Promise<void>;
+    abstract multiRemove(
+        keys : Array<string>,
+        callback? : (errors? : Array<Error>) => void
+    ) : Promise<void>;
+    abstract multiMerge(
+        keyValuePairs : Array<Array<string>>, 
+        callback? : (errors? : Array<Error>) => void
+    ) : Promise<void>;
 
 }
 
 @Service()
 export class CacheStorageService extends CacheStorageServiceInterface{
-    constructor(src: string){
-        super(src);
+    constructor(){
+        super();
     }
 
     getAllKeys = async (callback?: (error?:Error, keys?: Array<string>) => void) => {
@@ -106,4 +114,36 @@ export class CacheStorageService extends CacheStorageServiceInterface{
         }
     }
 
+    multiSet = async (
+        keyValuePairs : Array<Array<string>>, 
+        callback? : (errors? : Array<Error>) => void
+    ) => {
+        try {
+            await AsyncStorage.multiSet(keyValuePairs, callback);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    multiRemove = async (
+        keys : Array<string>,
+        callback? : (errors? : Array<Error>) => void
+    ) => {
+        try {
+            await AsyncStorage.multiRemove(keys, callback);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    multiMerge = async (
+        keyValuePairs : Array<Array<string>>, 
+        callback? : (errors? : Array<Error>) => void
+    ) => {
+        try {
+            await AsyncStorage.multiMerge(keyValuePairs, callback);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 }   
