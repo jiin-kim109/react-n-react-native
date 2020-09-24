@@ -4,8 +4,8 @@ module.exports = function (api) {
     presets: ["babel-preset-expo"],
     plugins: [
       ["@babel/plugin-proposal-decorators", { legacy: true }],
-      ["@babel/plugin-proposal-class-properties", { loose: true }],
       "@babel/plugin-proposal-export-namespace-from",
+      ["@babel/plugin-transform-flow-strip-types"]
     ],
   };
 };

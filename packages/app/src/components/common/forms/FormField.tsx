@@ -13,7 +13,7 @@ export interface IFormFieldProps extends Common.AppTextInputProps {
     keyboardType? : any, 
     textContentType? : any,
     autoFocus? : any,
-    theme : any,
+    theme : ReactNativePaper.Theme,
 
 }
 
