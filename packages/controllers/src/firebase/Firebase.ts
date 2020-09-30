@@ -1,12 +1,5 @@
 import * as firebase from 'firebase';
 
-// Optionally import the services that you want to use
-import "firebase/auth";
-//import "firebase/database";
-import "firebase/firestore";
-//import "firebase/functions";
-//import "firebase/storage";
-
 /**
  *  Initialize Firebase
  */ 
@@ -25,29 +18,11 @@ if(!firebase.apps.length){
     firebase.initializeApp(firebaseConfig);
     firebase.auth().signOut(); // TEMPORARY: NEED TO DELETE WHEN Sign In function is fully implemented. 
 }
+
 const app = firebase.app();
 
-/**
- * Firebase Auth
- */
-interface IUserInfo {
-    email:      string;
-    password?:   any; 
-}
 const auth = firebase.auth();
-const signInWithEmail = ({email, password}: IUserInfo) => 
-    auth.signInWithEmailAndPassword(email, password);
-const registerWithEmail = ({email, password}: IUserInfo) => 
-    auth.createUserWithEmailAndPassword(email, password);
-const logout = () => auth.signOut();
-const passwordReset = (user:IUserInfo) => auth.sendPasswordResetEmail(user.email);
-
-/**
- * Firebase db (Firestore)
- */
 const db = firebase.firestore(app);
-// TODO : DB Handeling
+const storage = firebase.storage();
 
-
-
-export { app, db, auth, signInWithEmail, registerWithEmail, logout, passwordReset, IUserInfo };
+export { app, db, auth, storage };

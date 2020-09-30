@@ -1,5 +1,7 @@
 import { observable, action } from 'mobx';
-import { db } from '../firebase/Firebase';
+import { User } from "firebase";
+import { auth } from "../firebase/Firebase";
+import { getAdministration } from 'mobx/lib/internal';
 
 interface UserInfo {
     userUID : string; // Primary Unique Key
@@ -27,27 +29,25 @@ interface Activity {
 
 export default class UserStore {
     constructor(){
-
+        auth.onAuthStateChanged(this.setCurrentUser);
     }
 
-    @observable sampleAsyncItem: string;
-
-    // from either app or web, called userStore.sampleAsyncAction()
-    @action sampleAsyncAction(){
-        db.collection("coll_name")
-            .doc("doc_name")
-            .onSnapshot({
-                // Listen for document metadata changes
-                includeMetadataChanges: true
-            }, function(doc) {
-                this.sampleAsyncItem = "aa";
-            });
-    }
-
-    @observable userInfo : UserInfo
+    @observable sampleAsyncItem: string
+    @observable user: User;
     
-    @action getUserInfo = ({userId}) => {
+    //--- Actions ---
+    @action 
+    setCurrentUser(user: User){
+        if(user){
+            this.user = user;
+        }
+        else{
+            this.user = null;
+        }
+    }
 
-    } 
+    //--- Async Action Bounds ---
+
+    //--- Logging for dev ---
 
 }

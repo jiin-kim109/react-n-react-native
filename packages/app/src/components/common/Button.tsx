@@ -118,36 +118,3 @@ export const ToggleButton: FunctionComponent<ToggleButtonProps> = (props) => {
 ToggleButton.defaultProps = {
   checked: false,
 }
-
-/*
-export const withTouchableGradient = <P extends object>(WrappedComponent: React.ComponentType<P>)
-  : FunctionComponent<P & withTouchableGradientProps> => ({onPress, gradientPreset, isShadow, ...props}) => {
-  const { colors, start, end, locations } = GetGradientStyle(gradientPreset);
-  const shadow = isShadow ? { 
-    shadowColor: '#000000',
-    shadowOffset: { //iOS shadow
-      width: 0,
-      height: 3
-    },
-    shadowRadius: 8, //iOS shadow
-    shadowOpacity: 0.8, //iOS shadow
-    elevation: 4, //Android shadow
-  } : null;
-  return (
-    <TouchableOpacity 
-      onPress={onPress}
-      delayPressIn={0}
-    >
-      <LinearGradient
-        style={shadow}
-        colors={colors ? colors : []}
-        start={start}
-        end={end}
-        locations={locations}
-      >
-          <WrappedComponent {...props as P}/>
-      </LinearGradient>
-    </TouchableOpacity>
-  )
-}
-*/

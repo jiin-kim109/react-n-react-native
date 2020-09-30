@@ -1,8 +1,7 @@
-import { Service, Inject, Token } from 'typedi';
+import { Service } from 'typedi';
 import { AsyncStorage } from 'react-native';
 
-export const CACHE_STORAGE_TOKEN = new Token<string>('CACHE_STORAGE_TOKEN');
-export abstract class CacheStorageServiceInterface {
+export abstract class AppCacheServiceInterface {
     // eslint-disable-next-line
     constructor() {}
     
@@ -50,7 +49,7 @@ export abstract class CacheStorageServiceInterface {
 }
 
 @Service()
-export class CacheStorageService extends CacheStorageServiceInterface{
+export class AppCacheService extends AppCacheServiceInterface{
     constructor(){
         super();
     }

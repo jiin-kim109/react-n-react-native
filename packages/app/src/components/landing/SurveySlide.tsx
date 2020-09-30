@@ -10,6 +10,7 @@ import {
 
 import { ListItem } from "react-native-elements";
 
+import { db } from "@act/controllers/src/firebase/Firebase";
 import * as Common from "../common/Common";
 import * as util from "../../util/util";
 import { FontText } from "../common/Common";
@@ -44,25 +45,20 @@ interface SurveySlideProps {
   description: { title: string; subtitle: string };
 }
 
-const SurveySlide: FunctionComponent<SurveySlideProps> = React.memo(
-  (props) => {
-    const { title, subtitle } = props.description;
-    return (
-      <View style={{ flex: 1 }}>
-        <View style={styles.sliderHeader}>
-          <Common.FontText fontType="header">{title}</Common.FontText>
-          <Common.FontText fontType="paragraph" style={{ marginTop: 20 }}>
-            {subtitle}
-          </Common.FontText>
-        </View>
-        <View style={styles.sliderBody}>{props.children}</View>
+const SurveySlide: FunctionComponent<SurveySlideProps> = (props) => {
+  const { title, subtitle } = props.description;
+  return (
+    <View style={{ flex: 1 }}>
+      <View style={styles.sliderHeader}>
+        <Common.FontText fontType="header">{title}</Common.FontText>
+        <Common.FontText fontType="paragraph" style={{ marginTop: 20 }}>
+          {subtitle}
+        </Common.FontText>
       </View>
-    );
-  },
-  (currProps, nextProps) =>
-    JSON.stringify(currProps.description) ===
-    JSON.stringify(nextProps.description)
-);
+      <View style={styles.sliderBody}>{props.children}</View>
+    </View>
+  );
+};
 
 export default SurveySlide;
 
@@ -74,127 +70,112 @@ interface Survey {
   onItemSelected: (key: string, choises: Array<string>) => void;
 }
 
-export const SingleChoice: FunctionComponent<Survey> = React.memo(
-  (props) => {
-    const [currItem, checkItem] = useState("");
-    const uniqueKeys: Array<string> = util.UniqueKeyArray(
-      props.survey.items.length
-    );
+export const SingleChoice: FunctionComponent<Survey> = (props) => {
+  const [currItem, checkItem] = useState("");
+  const uniqueKeys: Array<string> = util.UniqueKeyArray(
+    props.survey.items.length
+  );
 
-    const onSelect = (item: string) => () => {
-      props.onItemSelected(props.survey.key, [item]);
-      checkItem(item);
-    };
+  const onSelect = (item: string) => () => {
+    props.onItemSelected(props.survey.key, [item]);
+    checkItem(item);
+  };
 
-    return (
-      <View style={{ marginTop: 90 }}>
-        {props.survey.items.map((item, idx) => (
-          <Common.ToggleButton
-            checked={currItem === item}
-            onPress={onSelect(item)}
-            style={styles.bigButton}
-            activeColor="preset_2"
-            text={item}
-            fontType="header_3"
-            key={uniqueKeys[idx]}
-          />
-        ))}
-      </View>
-    );
-  },
-  (currProps, nextProps) =>
-    JSON.stringify(currProps.survey.items) ===
-    JSON.stringify(nextProps.survey.items)
-);
+  return (
+    <View style={{ marginTop: 90 }}>
+      {props.survey.items.map((item, idx) => (
+        <Common.ToggleButton
+          checked={currItem === item}
+          onPress={onSelect(item)}
+          style={styles.bigButton}
+          activeColor="preset_2"
+          text={item}
+          fontType="header_3"
+          key={uniqueKeys[idx]}
+        />
+      ))}
+    </View>
+  );
+};
 
-export const MultiChoice: FunctionComponent<Survey> = React.memo(
-  (props) => {
-    const [checkedItems, checkItem] = useState<Array<string>>([]);
-    const uniqueKeys: Array<string> = util.UniqueKeyArray(
-      props.survey.items.length
-    );
+export const MultiChoice: FunctionComponent<Survey> = (props) => {
+  const [checkedItems, checkItem] = useState<Array<string>>([]);
+  const uniqueKeys: Array<string> = util.UniqueKeyArray(
+    props.survey.items.length
+  );
 
-    const onPress = (item: string) => {
-      if (checkedItems.includes(item)) {
-        const itemsWithout = util.Remove(checkedItems, item);
-        props.onItemSelected(props.survey.key, itemsWithout);
-        checkItem(itemsWithout);
-      } else {
-        const itemsWith = [...checkedItems, item];
-        props.onItemSelected(props.survey.key, itemsWith);
-        checkItem(itemsWith);
-      }
-    };
+  const onPress = (item: string) => {
+    if (checkedItems.includes(item)) {
+      const itemsWithout = util.Remove(checkedItems, item);
+      props.onItemSelected(props.survey.key, itemsWithout);
+      checkItem(itemsWithout);
+    } else {
+      const itemsWith = [...checkedItems, item];
+      props.onItemSelected(props.survey.key, itemsWith);
+      checkItem(itemsWith);
+    }
+  };
 
-    return (
-      <View
-        style={{
-          flexWrap: "wrap",
-          flexDirection: "row",
-          justifyContent: "center",
-          marginTop: 40,
-          paddingHorizontal: 10,
-        }}
-      >
-        {props.survey.items.map((item, idx) => (
-          <Common.ToggleButton
-            checked={checkedItems.includes(item)}
-            onPress={() => onPress(item)}
-            style={styles.smallButton}
-            activeColor="preset_2"
-            text={item}
-            fontType="subheader"
-            key={uniqueKeys[idx]}
-          />
-        ))}
-      </View>
-    );
-  },
-  (currProps, nextProps) =>
-    JSON.stringify(currProps.survey.items) ===
-    JSON.stringify(nextProps.survey.items)
-);
+  return (
+    <View
+      style={{
+        flexWrap: "wrap",
+        flexDirection: "row",
+        justifyContent: "center",
+        marginTop: 40,
+        paddingHorizontal: 10,
+      }}
+    >
+      {props.survey.items.map((item, idx) => (
+        <Common.ToggleButton
+          checked={checkedItems.includes(item)}
+          onPress={() => onPress(item)}
+          style={styles.smallButton}
+          activeColor="preset_2"
+          text={item}
+          fontType="subheader"
+          key={uniqueKeys[idx]}
+        />
+      ))}
+    </View>
+  );
+};
 
 export const MultiChoiceList: FunctionComponent<
   Survey & { maxChoiceNum: number }
-> = React.memo(
-  (props) => {
-    const [checkedItems, checkItem] = useState<Array<string>>([]);
-    const uniqueKeys: Array<string> = util.UniqueKeyArray(
-      props.survey.items.length
-    );
+> = (props) => {
+  const [checkedItems, checkItem] = useState<Array<string>>([]);
+  const uniqueKeys: Array<string> = util.UniqueKeyArray(
+    props.survey.items.length
+  );
 
-    const onCheck = (item: string) => {
-      if (checkedItems.includes(item)) {
-        const itemsWithout = util.Remove(checkedItems, item);
-        props.onItemSelected(props.survey.key, itemsWithout);
-        checkItem(itemsWithout);
-      } else if (checkedItems.length < props.maxChoiceNum) {
-        const itemsWith = [...checkedItems, item];
-        props.onItemSelected(props.survey.key, itemsWith);
-        checkItem(itemsWith);
-      }
-    };
+  const onCheck = (item: string) => {
+    if (checkedItems.includes(item)) {
+      const itemsWithout = util.Remove(checkedItems, item);
+      props.onItemSelected(props.survey.key, itemsWithout);
+      checkItem(itemsWithout);
+    } else if (checkedItems.length < props.maxChoiceNum) {
+      const itemsWith = [...checkedItems, item];
+      props.onItemSelected(props.survey.key, itemsWith);
+      checkItem(itemsWith);
+    }
+  };
 
-    return (
-      <ScrollView style={{ flex: 1, marginTop: 50, paddingHorizontal: 20 }}>
-        {props.survey.items.map((item, idx) => (
-          <ListItem key={uniqueKeys[idx]} bottomDivider>
-            <ListItem.Content>
-              <FontText style={{ marginLeft: 25 }} fontType="subheader">
-                {item}
-              </FontText>
-            </ListItem.Content>
-            <ListItem.CheckBox
-              checked={checkedItems.includes(item)}
-              onPress={() => onCheck(item)}
-            />
-          </ListItem>
-        ))}
-      </ScrollView>
-    );
-  },
-  (currProps, nextProps) =>
-    JSON.stringify(currProps.survey.items) ===
-    JSON.stringify(nextProps.survey.items)
-);
+  return (
+    <ScrollView style={{ flex: 1, marginTop: 50, paddingHorizontal: 20 }}>
+      {props.survey.items.map((item, idx) => (
+        <ListItem key={uniqueKeys[idx]} bottomDivider>
+          <ListItem.Content>
+            <FontText style={{ marginLeft: 25 }} fontType="subheader">
+              {item}
+            </FontText>
+          </ListItem.Content>
+          <ListItem.CheckBox
+            checked={checkedItems.includes(item)}
+            onPress={() => onCheck(item)}
+          />
+        </ListItem>
+      ))}
+    </ScrollView>
+  );
+};

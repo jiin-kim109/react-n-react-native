@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component, MouseEvent } from 'react';
 import { observer, inject } from 'mobx-react';
 
@@ -13,7 +14,8 @@ interface Props {
     increase: stores.rootStore.increase,
     decrease: stores.rootStore.decrease,
 }))
-//@inject('rootStore') I'd suggest the above way to specify subscribing props
+//@inject('rootStore') 
+// I'd suggest the first way so that we can get know of observer props
 @observer
 class Counter extends Component<Props> {
     render() {
