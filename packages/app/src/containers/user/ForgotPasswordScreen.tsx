@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import * as Yup from "yup";
 import { useAuthentication } from "@act/controllers";
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "../../components/navigation/AuthStack";
 
 import Form, {
   FormButton,
@@ -24,14 +24,23 @@ interface ISignUpPros {
 
 const ForgotPasswordScreen = ({ navigation }: ISignUpPros) => {
   const [customError, setCustomError] = useState("");
-  const auth = useAuthentication();
+  const { resetPassword } = useAuthentication();
+
+  async function onResetPassword(email: string) {
+    try {
+      await resetPassword(email);
+      navigation.navigate("Home");
+    } catch (error) {
+      setCustomError(error);
+    }
+  }
 
   return (
     <View style={{ flex: 1 }}>
       <Form
         initialValues={{ email: "" }}
         validationSchema={validationSchema}
-        onSubmit={(result) => auth.resetPassword(result.email)}
+        onSubmit={(result) => onResetPassword(result.email)}
       >
         <FormField
           name="email"

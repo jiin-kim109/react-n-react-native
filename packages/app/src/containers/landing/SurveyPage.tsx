@@ -4,7 +4,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import Swiper from "react-native-swiper";
 import { ProgressBar, withTheme } from "react-native-paper";
 
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "../../components/navigation/AuthStack";
 import SurveySlide, {
   SingleChoice,
   MultiChoice,

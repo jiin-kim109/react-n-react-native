@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import * as Yup from "yup";
 import { useAuthentication } from "@act/controllers";
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "../../components/navigation/AuthStack";
 import Form, {
   FormButton,
   FormField,
@@ -22,6 +22,10 @@ const validationSchema = Yup.object().shape({
     .required("Confirm Passward is required"),
 });
 
+interface SignUpData {
+  email: string;
+  password: string;
+}
 interface SignUpScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "SignUp">;
 }
@@ -34,7 +38,8 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps) => {
     true
   );
   const [registerError, setRegisterError] = useState("");
-  const auth = useAuthentication();
+
+  const { signUp } = useAuthentication();
 
   function handlePasswordVisibility() {
     if (rightIcon === "eye") {
@@ -56,6 +61,15 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps) => {
     }
   }
 
+  async function onSignUp(result: SignUpData) {
+    try {
+      await signUp(result.email, result.password);
+      navigation.navigate("Home");
+    } catch (error) {
+      setRegisterError(error);
+    }
+  }
+
   return (
     <View style={{ flex: 1 }}>
       <Form
@@ -66,7 +80,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps) => {
           confirmPassword: "",
         }}
         validationSchema={validationSchema}
-        onSubmit={(result) => auth.signUp(result.email, result.password)}
+        onSubmit={(result: SignUpData) => onSignUp(result)}
       >
         <FormField
           name="name"

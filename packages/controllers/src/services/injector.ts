@@ -45,6 +45,8 @@ export class injector {
     }
 }
 
+export const setPlatform = (scope: InjecteeScopes[number]) => injector.setScope(scope);
+
 injector.set('DB', db);
 injector.set('Auth', auth);
 injector.set('Storage', storage);

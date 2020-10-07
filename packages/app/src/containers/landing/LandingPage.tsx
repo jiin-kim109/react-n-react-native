@@ -6,7 +6,7 @@ import { useTheme } from "react-native-paper";
 
 import FontText from "../../components/Text";
 import { TouchableGradient } from "../../components/Button";
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "../../components/navigation/AuthStack";
 import * as util from "../../util/util";
 
 interface LandingProps {

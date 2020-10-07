@@ -1,12 +1,11 @@
 /* eslint-disable */
 import React, { Component } from "react";
 import { registerRootComponent } from "expo";
-import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { Provider as StateProvider } from "react-redux";
 import {
   store,
-  injector,
+  setPlatform,
 } from "@act/controllers";
 import * as Font from "expo-font";
 import { Image, YellowBox } from "react-native";
@@ -14,35 +13,15 @@ import { Provider as ThemeProvider } from 'react-native-paper';
 import theme from "./styles/styles";
 import { StatusBar } from 'expo-status-bar';
 import _ from 'lodash';
-
-import LandingPage from "./containers/landing/LandingPage";
-import SurveyPage from "./containers/landing/SurveyPage";
-import HomeTab from "./containers/HomeTab";
-import SignInScreen from './containers/user/SignInScreen';
-import SignUpScreen from './containers/user/SignUpScreen';
-import ForgotPasswordScreen from './containers/user/ForgotPasswordScreen';
-
-// Set prop types for each route
-// undefine means the route has no param
-// union (e.g. param | undefined) means that the params are optional
-export type RootStackParamList = {
-  Landing: undefined;
-  Survey: undefined;
-  Home: undefined;
-  SignIn: undefined; 
-  SignUp: undefined; 
-  ForgotPassword: undefined; 
-};
+import Routes from "./components/navigation/Routes"
 
 interface Props {
-  dummy: string;
+  dummy: string
 }
 
 interface State {
-  loadEssentials: boolean;
+  loadEssentials: boolean
 }
-
-const Stack = createStackNavigator<RootStackParamList>();
 
 class App extends Component<Props, State> {
   constructor(props: Props) {
@@ -53,8 +32,7 @@ class App extends Component<Props, State> {
   }
   
   async componentDidMount() {
-    injector.setScope('app');
-
+    setPlatform('app')
     await Font.loadAsync({
       "OpenSans-Regular": require("../assets/fonts/OpenSans-Regular.ttf"),
       "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
@@ -73,31 +51,10 @@ class App extends Component<Props, State> {
     }
     return (
       <ThemeProvider theme={theme}>
-        <Provider store={store}>
+        <StateProvider store={store}>
           <StatusBar style="light" backgroundColor="black"/>
-          <NavigationContainer>
-            <Stack.Navigator initialRouteName="Landing">
-              <Stack.Screen
-                name="Landing"
-                component={LandingPage}
-                options={{
-                  headerShown: false,
-                }}
-              />
-              <Stack.Screen
-                name="Survey"
-                component={SurveyPage}
-                options={{
-                  headerShown: false,
-                }}
-              />
-              <Stack.Screen name="Home" component={HomeTab} />
-              <Stack.Screen name="SignIn" component={SignInScreen} />
-              <Stack.Screen name="SignUp" component={SignUpScreen} />
-              <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-            </Stack.Navigator>
-          </NavigationContainer>
-        </Provider>
+          <Routes/>
+        </StateProvider>
       </ThemeProvider>
     );
   }
@@ -105,6 +62,7 @@ class App extends Component<Props, State> {
 
 export default registerRootComponent(App);
 
+// Ignore timeout error on the React Native
 YellowBox.ignoreWarnings(['Setting a timer']);
 const _console = _.clone(console);
 console.warn = (message: any) => {

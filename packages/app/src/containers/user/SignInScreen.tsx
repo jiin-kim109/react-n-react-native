@@ -5,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import * as Yup from "yup";
 import { useTheme } from "react-native-paper";
 import { useAuthentication } from "@act/controllers";
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "../../components/navigation/AuthStack";
 
 import FontText from "../../components/Text";
 import { TouchableGradient } from "../../components/Button";
@@ -40,6 +40,11 @@ const styles = StyleSheet.create({
   },
 });
 
+interface SignInData {
+  email: string;
+  password: string;
+}
+
 interface SignInScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "SignIn">;
 }
@@ -49,7 +54,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
   const [rightIcon, setRightIcon] = useState("eye");
   const [loginError, setLoginError] = useState(null);
   const theme = useTheme();
-  const auth = useAuthentication();
+  const { signIn } = useAuthentication();
 
   function handlePasswordVisibility() {
     if (rightIcon === "eye") {
@@ -61,12 +66,21 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
     }
   }
 
+  async function onSignIn(result: SignInData) {
+    try {
+      await signIn(result.email, result.password);
+      navigation.navigate("Home");
+    } catch (error) {
+      setLoginError(error);
+    }
+  }
+
   return (
     <View style={{ flex: 1 }}>
       <Form
         initialValues={{ email: "", password: "" }}
         validationSchema={validationSchema}
-        onSubmit={(result) => auth.signIn(result.email, result.password)}
+        onSubmit={(result: SignInData) => onSignIn(result)}
       >
         <FormField
           name="email"

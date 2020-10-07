@@ -1,29 +1,26 @@
 import { User } from "firebase";
 
 interface UserState {
-    user: User
-    email: string
+    currentUser: User
 }
 
 const initialState: UserState = {
-    user: null,
-    email: "",
+    currentUser: null,
 };
 
 const SET_CURRENT_USER = 'USER/SET_CURRENT_USER';
-interface SetUserAction {
+interface SetCurrentUser {
     type: typeof SET_CURRENT_USER
-    user: User
+    currentUser: User
 }
 
-type UserActions = SetUserAction
+type UserActions = SetCurrentUser
 
-export default function currentUser(state = initialState, action: UserActions): UserState{
+export default function userReducer(state = initialState, action: UserActions): UserState{
     switch(action.type){
         case SET_CURRENT_USER:
             return {
-                user: action.user,
-                email: action.user ? action.user.email : "",
+                currentUser: action.currentUser,
             }
         default:
             return state;

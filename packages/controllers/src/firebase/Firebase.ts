@@ -26,7 +26,7 @@ const auth = firebase.auth();
 auth.onAuthStateChanged((user: firebase.User) => {
     store.dispatch({
         type: 'USER/SET_CURRENT_USER',
-        user: user
+        currentUser: user
     })
 });
 

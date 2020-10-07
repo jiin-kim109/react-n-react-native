@@ -73,7 +73,7 @@ interface ToggleButtonProps {
   style?: Omit<ViewStyle, "backgroundColor" | "borderColor" | "borderWidth">,
   checked?: boolean,
   text: string,
-  fontset?: ValueOf<ReactNativePaper.Theme['fontsets']>,
+  fontset?: ReactNativePaper.Fontset,
   onPress: () => void,
 }
 

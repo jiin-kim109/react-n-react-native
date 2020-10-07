@@ -1,8 +1,11 @@
 import { useState } from "react"
 import { injector } from "../services/injector";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 export const useAuthentication = () => {
     const auth = injector.get('Auth')
+    const user = useSelector<RootState>(state => state.user) as RootState['user']
 
     async function signUp(email: string, password: string){
         try {
@@ -30,6 +33,7 @@ export const useAuthentication = () => {
 
     return {
         auth,
+        user,
         signUp,
         signIn,
         resetPassword,

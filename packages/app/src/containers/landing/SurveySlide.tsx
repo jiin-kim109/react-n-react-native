@@ -1,12 +1,5 @@
 import React, { FunctionComponent, useState } from "react";
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Image,
-  useWindowDimensions,
-} from "react-native";
+import { StyleSheet, ScrollView, View } from "react-native";
 import { useTheme } from "react-native-paper";
 import { ListItem } from "react-native-elements";
 

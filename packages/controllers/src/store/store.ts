@@ -1,8 +1,8 @@
 import { applyMiddleware, createStore, compose } from 'redux'
-import createSagaMiddleware from 'redux-saga';
-import { logger } from './middleware/logger'
+import createSagaMiddleware from 'redux-saga'
+import logger from 'redux-logger'
 import monitorReducerEnhancer from './enhancers/monitorReducerEnhancer'
-import rootReducer from './reducers';
+import rootReducer from './reducers'
 import rootSaga from "./sagas"
 
 function configureStore(preloadedState?) {
@@ -26,4 +26,8 @@ function configureStore(preloadedState?) {
     return store
 }
 
+/**
+ * Export store and RootState Type
+ */
 export const store = configureStore()
+export type RootState = ReturnType<typeof rootReducer>
