@@ -1,4 +1,5 @@
 import * as firebase from 'firebase';
+import { store } from "../store/store"
 
 /**
  *  Initialize Firebase
@@ -22,6 +23,13 @@ if(!firebase.apps.length){
 const app = firebase.app();
 
 const auth = firebase.auth();
+auth.onAuthStateChanged((user: firebase.User) => {
+    store.dispatch({
+        type: 'USER/SET_CURRENT_USER',
+        currentUser: user
+    })
+});
+
 const db = firebase.firestore(app);
 const storage = firebase.storage();
 

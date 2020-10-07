@@ -1,3 +1,4 @@
 import "reflect-metadata";
-export * from "./store/rootStore";
-export * from "./services/injector";
+export { store } from "./store/store";
+export { setPlatform } from "./services/injector";
+export * from "./hooks";

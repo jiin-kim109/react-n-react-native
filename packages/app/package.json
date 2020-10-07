@@ -24,13 +24,13 @@
     "@types/lodash": "^4.14.161",
     "@types/yup": "^0.29.7",
     "expo": "^38.0.9",
+    "expo-facebook": "~8.2.1",
     "expo-font": "~8.2.1",
     "expo-linear-gradient": "~8.2.1",
     "expo-status-bar": "^1.0.0",
     "expo-yarn-workspaces": "^1.2.1",
+    "formik": "^2.1.7",
     "lodash": "^4.17.20",
-    "mobx": "^5.15.6",
-    "mobx-react": "^6.3.0",
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
@@ -43,6 +43,7 @@
     "react-native-swiper": "^1.6.0",
     "react-native-unimodules": "^0.10.1",
     "react-native-web": "~0.11.7",
+    "react-redux": "^7.2.1",
     "yup": "^0.29.3"
   },
   "devDependencies": {

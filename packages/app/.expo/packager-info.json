@@ -3,8 +3,8 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://yz-xzd.jiin.app.exp.direct",
+  "packagerNgrokUrl": "https://packager.yz-xzd.jiin.app.exp.direct",
+  "ngrokPid": 11484,
   "webpackServerPort": null
 }
