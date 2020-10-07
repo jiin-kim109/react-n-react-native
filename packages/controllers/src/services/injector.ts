@@ -1,7 +1,7 @@
 import { Container } from "typedi";
 import * as firebase from "firebase";
 
-import { db, auth, storage } from "../firebase/Firebase";
+import { db, auth, storage } from "../firebase/firebase";
 import { AppCacheService, AppCacheServiceInterface, } from "./app/appCache";
 
 interface InjecteeTypeMap {
@@ -18,11 +18,11 @@ type InjecteeScopes = [
     'app',
 ]
 
-export class Injector {
+export class injector {
     private static defaultScope: InjecteeScopes[number] | undefined = undefined;
 
     public static setScope(scope?: InjecteeScopes[number]){
-        Injector.defaultScope = scope;
+        injector.defaultScope = scope;
     }
 
     public static set<T extends keyof InjecteeTypeMap>(injecteeName: T, injectee: InjecteeTypeMap[T], scope?: InjecteeScopes[number]): void {
@@ -33,9 +33,9 @@ export class Injector {
         Container.set(injecteeName + "_" + (scope as string), injectee);
     }
     public static get<T extends keyof InjecteeTypeMap>(injecteeName: T): InjecteeTypeMap[T] {
-        if(Injector.defaultScope){
+        if(injector.defaultScope){
             try{
-                return Container.get(injecteeName + "_" + Injector.defaultScope);
+                return Container.get(injecteeName + "_" + injector.defaultScope);
             }
             catch(error){
                 return Container.get(injecteeName);
@@ -45,9 +45,9 @@ export class Injector {
     }
 }
 
-Injector.set('DB', db);
-Injector.set('Auth', auth);
-Injector.set('Storage', storage);
+injector.set('DB', db);
+injector.set('Auth', auth);
+injector.set('Storage', storage);
 
-Injector.set('CacheStorage', new AppCacheService(), 'app');
+injector.set('CacheStorage', new AppCacheService(), 'app');
 //Injector.set('CacheStorage', {}, 'web');

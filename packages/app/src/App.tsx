@@ -1,24 +1,27 @@
 /* eslint-disable */
 import React, { Component } from "react";
 import { registerRootComponent } from "expo";
-import { Provider } from "mobx-react";
+import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import {
-  RootStore,
-  Injector,
+  store,
+  injector,
 } from "@act/controllers";
 import * as Font from "expo-font";
 import { Image, YellowBox } from "react-native";
+import { Provider as ThemeProvider } from 'react-native-paper';
+import theme from "./styles/styles";
 import { StatusBar } from 'expo-status-bar';
 import _ from 'lodash';
 
-import LandingPage from "./components/landing/LandingPage";
-import SurveyPage from "./components/landing/SurveyPage";
-import HomeTab from "./components/HomeTab";
-import SignInScreen from './components/user/SignInScreen';
-import SignUpScreen from './components/user/SignUpScreen';
-import ForgotPasswordScreen from './components/user/ForgotPasswordScreen';
+import LandingPage from "./containers/landing/LandingPage";
+import SurveyPage from "./containers/landing/SurveyPage";
+import HomeTab from "./containers/HomeTab";
+import SignInScreen from './containers/user/SignInScreen';
+import SignUpScreen from './containers/user/SignUpScreen';
+import ForgotPasswordScreen from './containers/user/ForgotPasswordScreen';
+
 // Set prop types for each route
 // undefine means the route has no param
 // union (e.g. param | undefined) means that the params are optional
@@ -42,8 +45,6 @@ interface State {
 const Stack = createStackNavigator<RootStackParamList>();
 
 class App extends Component<Props, State> {
-  private rootStore: RootStore = new RootStore();
-
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -52,7 +53,7 @@ class App extends Component<Props, State> {
   }
   
   async componentDidMount() {
-    Injector.setScope('app');
+    injector.setScope('app');
 
     await Font.loadAsync({
       "OpenSans-Regular": require("../assets/fonts/OpenSans-Regular.ttf"),
@@ -71,31 +72,33 @@ class App extends Component<Props, State> {
       );
     }
     return (
-      <Provider rootStore={this.rootStore}>
-        <StatusBar style="light" backgroundColor="black"/>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Landing">
-            <Stack.Screen
-              name="Landing"
-              component={LandingPage}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="Survey"
-              component={SurveyPage}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen name="Home" component={HomeTab} />
-            <Stack.Screen name="SignIn" component={SignInScreen} />
-            <Stack.Screen name="SignUp" component={SignUpScreen} />
-            <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </Provider>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <StatusBar style="light" backgroundColor="black"/>
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="Landing">
+              <Stack.Screen
+                name="Landing"
+                component={LandingPage}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="Survey"
+                component={SurveyPage}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen name="Home" component={HomeTab} />
+              <Stack.Screen name="SignIn" component={SignInScreen} />
+              <Stack.Screen name="SignUp" component={SignUpScreen} />
+              <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </Provider>
+      </ThemeProvider>
     );
   }
 }

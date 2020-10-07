@@ -26,3 +26,25 @@ export const UniqueKeyArray = function (length: number) {
   }
   return keys;
 };
+
+export function ToRgbA(colorCode: string, opacity: number) {
+  let c: any;
+  if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(colorCode)) {
+    c = colorCode.substring(1).split("");
+    if (c.length === 3) {
+      c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+    }
+    c = `0x${c.join("")}`;
+    return `rgba(${[(c >> 16) & 255, (c >> 8) & 255, c & 255].join(
+      ","
+    )},${opacity})`;
+  }
+  if (/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/.test(colorCode)) {
+    const rgb = colorCode
+      .substring(4, colorCode.length - 1)
+      .replace(/ /g, "")
+      .split(",");
+    return `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${opacity})`;
+  }
+  throw new Error("Bad Hex");
+}
