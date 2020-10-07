@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import { View } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import * as ReactNativePaper from "react-native-paper";
 import * as Yup from "yup";
 import { useAuthentication } from "@act/controllers";
 import { RootStackParamList } from "../../App";

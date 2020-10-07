@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { LinearGradient } from "expo-linear-gradient";
-import * as ReactNativePaper from "react-native-paper";
 import * as Yup from "yup";
 import { useTheme } from "react-native-paper";
 import { useAuthentication } from "@act/controllers";
@@ -50,7 +49,6 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
   const [rightIcon, setRightIcon] = useState("eye");
   const [loginError, setLoginError] = useState(null);
   const theme = useTheme();
-
   const auth = useAuthentication();
 
   function handlePasswordVisibility() {

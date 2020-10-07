@@ -23,7 +23,7 @@ export default function currentUser(state = initialState, action: UserActions): 
         case SET_CURRENT_USER:
             return {
                 user: action.user,
-                email: action.user.email,
+                email: action.user ? action.user.email : "",
             }
         default:
             return state;

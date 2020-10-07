@@ -34,7 +34,6 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps) => {
     true
   );
   const [registerError, setRegisterError] = useState("");
-
   const auth = useAuthentication();
 
   function handlePasswordVisibility() {

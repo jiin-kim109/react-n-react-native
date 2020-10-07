@@ -12,10 +12,12 @@ function configureStore(preloadedState?) {
     if (process.env.NODE_ENV === 'development') {
         middlewares.push(secretMiddleware)
     }
+    if (process.env == 'web')
+        middlewares.push(monitorReducerEnhancer)
     */
     const middlewareEnhancer = applyMiddleware(...middlewares)
   
-    const enhancers = [middlewareEnhancer, monitorReducerEnhancer]
+    const enhancers = [middlewareEnhancer]
     const composedEnhancers: any = compose(...enhancers)
   
     const store = createStore(rootReducer, preloadedState, composedEnhancers)
