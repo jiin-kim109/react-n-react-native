@@ -96,7 +96,7 @@ https://github.com/necolas/react-native-web
 ### Importing RN-for-web components from web
 https://codesandbox.io/s/q4qymyp2l6?file=/src/App.js:2971-2980  
   
-### DI to support each platform's services
+### DI to support service per platform
 (typedi) https://github.com/typestack/typedi   
 (docs) https://docs.typestack.community/typedi/v/develop/  
   

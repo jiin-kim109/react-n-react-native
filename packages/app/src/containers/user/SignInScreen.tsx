@@ -4,8 +4,9 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Yup from "yup";
 import { useTheme } from "react-native-paper";
-import { useAuthentication } from "@act/controllers";
+import { useAuthentication } from "@hashes/controllers";
 import { RootStackParamList } from "../../components/navigation/AuthStack";
+import Header from "../../components/Header"
 
 import FontText from "../../components/Text";
 import { TouchableGradient } from "../../components/Button";
@@ -28,16 +29,22 @@ const validationSchema = Yup.object().shape({
 });
 
 const styles = StyleSheet.create({
-  bottomView: {
-    flex: 1,
+  form: {
+    marginHorizontal: 15,
   },
-  button: {
-    height: 60,
-    marginHorizontal: 30,
-    marginTop: 40,
-    borderRadius: 10,
+  form__bottom: {
+    marginTop: 30
+  },
+  form__bottom__button: {
+    height: 50,
+    marginHorizontal: 15,
+    borderRadius: 5,
     justifyContent: "center",
   },
+  form__bottom__button__font: {
+    fontSize: 18,
+    fontWeight: "bold"
+  }
 });
 
 interface SignInData {
@@ -50,36 +57,32 @@ interface SignInScreenProps {
 }
 
 const SignInScreen = ({ navigation }: SignInScreenProps) => {
-  const [passwordVisibility, setPasswordVisibility] = useState(true);
-  const [rightIcon, setRightIcon] = useState("eye");
-  const [loginError, setLoginError] = useState(null);
   const theme = useTheme();
-  const { signIn } = useAuthentication();
-
-  function handlePasswordVisibility() {
-    if (rightIcon === "eye") {
-      setRightIcon("eye-off");
-      setPasswordVisibility(!passwordVisibility);
-    } else if (rightIcon === "eye-off") {
-      setRightIcon("eye");
-      setPasswordVisibility(!passwordVisibility);
-    }
-  }
-
+  const authData = useAuthentication();
+  const 
+  { passwordVisibility, 
+    passwordIcon, 
+    errorMessage, 
+    signIn, 
+    setErrorMessage,
+    handlePasswordVisibility } = authData;
+    
   async function onSignIn(result: SignInData) {
     try {
       await signIn(result.email, result.password);
-      navigation.navigate("Home");
+      navigation.navigate("Main");
     } catch (error) {
-      setLoginError(error);
+      setErrorMessage(error.message);
     }
   }
 
   return (
     <View style={{ flex: 1 }}>
+      <Header title="Sign In" />
       <Form
         initialValues={{ email: "", password: "" }}
         validationSchema={validationSchema}
+        style={styles.form}
         onSubmit={(result: SignInData) => onSignIn(result)}
       >
         <FormField
@@ -96,7 +99,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
         <FormField
           name="password"
           leftIconName="lock"
-          rightIconName={rightIcon}
+          rightIconName={passwordIcon}
           handlePasswordVisibility={handlePasswordVisibility}
           config={{
             placeholder: "Enter password",
@@ -106,37 +109,36 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
             textContentType: "password",
           }}
         />
-        <FormButton title="Login" />
-        {loginError ? <FormErrorMessage error={loginError} visible /> : null}
-      </Form>
-      <View style={{ flex: 1 }}>
         <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
-          <Text>Forgot Password?</Text>
+          <FontText style={{color: theme.colors.lightBlue, marginTop: 5}}>Forgot Password?</FontText>
         </TouchableOpacity>
-      </View>
-      <View style={{ flex: 1 }}>
-        <LinearGradient
-          colors={[
-            util.ToRgbA(theme.colors.white, 0.1),
-            util.ToRgbA(theme.colors.white, 1.0),
-          ]}
-          start={[0.0, 0.0]}
-          end={[0.0, 0.5]}
-        >
-          <TouchableGradient
-            style={styles.button}
-            onPress={() => navigation.navigate("SignUp")}
-            isShadow
+        
+        <View style={styles.form__bottom}>
+          {errorMessage ? <FormErrorMessage error={errorMessage} visible /> : null}
+          <FormButton
+            style={{marginBottom: 20, ...styles.form__bottom__button, backgroundColor: theme.colors.primaryGreen}}
+            submit
           >
             <FontText
-              style={{ textAlign: "center", color: theme.colors.white }}
-              fontset={theme.fontsets.header3}
+              style={{ textAlign: "center", color: theme.colors.white, ...styles.form__bottom__button__font }}
+              fontset={theme.fontsets.paragraph}
             >
-              Sign Up
-            </FontText>
-          </TouchableGradient>
-        </LinearGradient>
-      </View>
+              Login
+            </FontText>         
+          </FormButton>
+          <FormButton
+            style={{...styles.form__bottom__button, backgroundColor: theme.colors.primaryBlue}}
+            onPress={() => navigation.navigate("SignUp")}
+          >
+            <FontText
+                style={{ textAlign: "center", color: theme.colors.white, ...styles.form__bottom__button__font }}
+                fontset={theme.fontsets.paragraph}
+              >
+                Sign Up
+              </FontText>         
+          </FormButton>
+        </View>
+      </Form>
     </View>
   );
 };

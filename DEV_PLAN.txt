@@ -1,0 +1,30 @@
+- UI
+- Messaging Server (WebSocket)
+- Web
+
+Tabs
+- Home:: Search, Recommended
+- Trends:: Hashtag Rank, District & Global Trends
+- Create:: Create Hashtags Instance
+- Profile:: 
+
+Hashtags Instance:: gallary and chat
+
+같은 관심사 친구 만나기
+여행 지역 관심사 보기
+주변 사람들 뭐 좋아하나 보기
+
+TODO
+Auth::
+- Loading
+- red coloring form field after error
+- email verification
+
+Home::
+- disable back press
+
+Survey::
+- retrieve survey results
+
+Token::
+- token management?

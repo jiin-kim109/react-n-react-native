@@ -92,7 +92,7 @@ class SurveyPage extends Component<SurveyProps, SurveyState> {
       swiper?.scrollBy(1, true);
     } else {
       // asyncStorage.save({ key, items });
-      this.props.navigation.navigate("Home");
+      this.props.navigation.navigate("Main");
     }
   };
 

@@ -1,12 +1,12 @@
-import * as React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import * as React from "react"
+import { createStackNavigator } from "@react-navigation/stack"
 
-import LandingPage from "../../containers/landing/LandingPage";
-import SurveyPage from "../../containers/landing/SurveyPage";
-import HomeTab from "../../containers/HomeTab";
-import SignInScreen from "../../containers/user/SignInScreen";
-import SignUpScreen from "../../containers/user/SignUpScreen";
-import ForgotPasswordScreen from "../../containers/user/ForgotPasswordScreen";
+import LandingPage from "../../containers/landing/LandingPage"
+import SurveyPage from "../../containers/landing/SurveyPage"
+import SignInScreen from "../../containers/user/SignInScreen"
+import SignUpScreen from "../../containers/user/SignUpScreen"
+import ForgotPasswordScreen from "../../containers/user/ForgotPasswordScreen"
+import MainScreen from "../../containers/MainScreen"
 
 // Typing props to each stack screen
 // undefine means that a screen has no param
@@ -17,14 +17,14 @@ export type RootStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
   ForgotPassword: undefined;
-  Home: undefined;
+  Main: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-export default function AppStack() {
+function AppStack() {
   return (
-    <Stack.Navigator initialRouteName="Landing">
+    <Stack.Navigator initialRouteName="Landing" screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="Landing"
         component={LandingPage}
@@ -39,10 +39,12 @@ export default function AppStack() {
           headerShown: false,
         }}
       />
-      <Stack.Screen name="Home" component={HomeTab} />
       <Stack.Screen name="SignIn" component={SignInScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+      <Stack.Screen name="Main" component={MainScreen} />
     </Stack.Navigator>
   );
 }
+
+export default AppStack;

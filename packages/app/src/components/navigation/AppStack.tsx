@@ -1,21 +1,21 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import HomeTab from "../../containers/HomeTab";
+import MainTab from "../../containers/MainScreen";
 
 // Typing props to each stack screen
 // undefine means that a screen has no param
 // union (e.g. param | undefined) means that the params are optional
 export type RootStackParamList = {
-  Home: undefined;
+  Main: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 export default function AppStack() {
   return (
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={HomeTab} />
+    <Stack.Navigator initialRouteName="Main" screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Main" component={MainTab} />
     </Stack.Navigator>
   );
 }

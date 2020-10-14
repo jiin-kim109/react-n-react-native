@@ -1,5 +1,5 @@
 {
-  "name": "@act/controllers",
+  "name": "@hashes/controllers",
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
@@ -14,7 +14,6 @@
   "dependencies": {
     "firebase": "^7.19.1",
     "formik": "^2.1.5",
-    "react": "^16.13.1",
     "react-redux": "^7.2.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",

@@ -4,11 +4,12 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
+  ViewStyle
 } from "react-native";
 import * as ReactNativePaper from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
-import { Formik, useFormikContext } from "formik";
-import { TextInput, useTheme } from "react-native-paper";
+import { Formik, FormikErrors, FormikTouched, useFormikContext } from "formik";
+import { TextInput, useTheme, Button } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TextInputProps } from "react-native-paper/lib/typescript/src/components/TextInput/TextInput";
 import * as util from "../../util/util";
@@ -21,25 +22,29 @@ import { TouchableGradient } from "../Button";
  * Formik wrapper component
  */
 interface FormProps {
-  initialValues: any;
-  onSubmit: (e: any) => void;
-  validationSchema: any;
+  initialValues: any
+  onSubmit: (e: any) => void
+  validationSchema: any
+  style?: ViewStyle
 }
 
 const Form: FunctionComponent<FormProps> = ({
   initialValues,
   onSubmit,
   validationSchema,
+  style,
   ...props
 }) => {
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
-      {() => <>{props.children}</>}
-    </Formik>
+    <View style={style}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+        {() => <>{props.children}</>}
+      </Formik>
+    </View>
   );
 };
 
@@ -67,10 +72,8 @@ export const FormInput: FunctionComponent<FormInputProps> = ({
   const theme = useTheme();
   const FormInputStyles = StyleSheet.create({
     container: {
-      borderRadius: 25,
       flexDirection: "row",
-      padding: 15,
-      marginVertical: 10,
+      marginVertical: 5,
     },
     icon: {
       marginRight: 10,
@@ -90,8 +93,6 @@ export const FormInput: FunctionComponent<FormInputProps> = ({
     <View
       style={{
         ...FormInputStyles.container,
-        backgroundColor: theme.colors.white,
-        width: "100%",
       }}
     >
       {leftIconName && (
@@ -130,60 +131,36 @@ export const FormInput: FunctionComponent<FormInputProps> = ({
  * Button component for Form
  */
 interface FormButtonProps {
-  title: string;
+  onPress?: () => void
+  style?: ViewStyle
+  submit?: boolean,
 }
 
 export const FormButton: FunctionComponent<FormButtonProps> = (props) => {
   const { handleSubmit } = useFormikContext();
+  const { onPress, submit } = props;
   const theme = useTheme();
-  const styles = StyleSheet.create({
-    buttonView: {
-      flex: 1,
-    },
-    button: {
-      height: 60,
-      marginHorizontal: 30,
-      marginTop: 40,
-      borderRadius: 10,
-      justifyContent: "center",
-    },
-  });
   return (
-    <LinearGradient
-      colors={[
-        util.ToRgbA(theme.colors.white, 0.1),
-        util.ToRgbA(theme.colors.white, 1.0),
-      ]}
-      start={[0.0, 0.0]}
-      end={[0.0, 0.5]}
-      style={styles.buttonView}
+    <Button
+      style={props.style}
+      onPress={() => {
+        onPress && onPress();
+        submit && handleSubmit();
+      }}
     >
-      <TouchableGradient
-        style={styles.button}
-        onPress={() => {
-          handleSubmit();
-        }}
-        isShadow
-      >
-        <FontText
-          style={{ textAlign: "center", color: theme.colors.white }}
-          fontset={theme.fontsets.header3}
-        >
-          {props.title}
-        </FontText>
-      </TouchableGradient>
-    </LinearGradient>
+      {props.children}
+    </Button>
   );
 };
 
 /**
- * FormButton
+ * FormErrorMessage
  *
  * Displays error message for Form
  */
 interface FormErrorMessageProps {
-  error: any;
-  visible?: any;
+  error?: string | FormikErrors<any> | string[] | FormikErrors<any>[];
+  visible?: boolean | FormikTouched<any> | FormikTouched<any>[];
 }
 
 export const FormErrorMessage: FunctionComponent<FormErrorMessageProps> = ({
@@ -198,11 +175,10 @@ export const FormErrorMessage: FunctionComponent<FormErrorMessageProps> = ({
       marginBottom: 5,
     },
   });
-  if (!error || !visible) {
+  if(!error || !visible)
     return null;
-  }
   return (
-    <FontText fontset={theme.fontsets.header4} style={styles.errorText}>
+    <FontText fontset={theme.fontsets.paragraph} style={styles.errorText}>
       {error}
     </FontText>
   );

@@ -14,6 +14,7 @@ packages/controller/node_modules/**/*
 packages/web/node_modules/**/*
 packages/app/.expo
 .vscode
+DEV_PLAN
 
 # macOS
 .DS_Store

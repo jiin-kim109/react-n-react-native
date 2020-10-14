@@ -1,8 +1,8 @@
 import { Container } from "typedi";
 import * as firebase from "firebase";
+import { AsyncStorage, AsyncStorageStatic } from 'react-native';
 
 import { db, auth, storage } from "../firebase/firebase";
-import { AppCacheService, AppCacheServiceInterface, } from "./app/appCache";
 
 interface InjecteeTypeMap {
     //STAGE: 'dev' | 'stg' | 'prod';
@@ -10,7 +10,7 @@ interface InjecteeTypeMap {
     DB: firebase.firestore.Firestore,
     Auth: firebase.auth.Auth,
     Storage: firebase.storage.Storage,
-    CacheStorage: AppCacheServiceInterface,
+    LocalStorage: AsyncStorageStatic,
 }
 
 type InjecteeScopes = [
@@ -51,5 +51,5 @@ injector.set('DB', db);
 injector.set('Auth', auth);
 injector.set('Storage', storage);
 
-injector.set('CacheStorage', new AppCacheService(), 'app');
+injector.set('LocalStorage', AsyncStorage, 'app');
 //Injector.set('CacheStorage', {}, 'web');

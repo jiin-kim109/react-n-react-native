@@ -1,5 +1,5 @@
 {
-  "name": "@act/app",
+  "name": "@hashes/app",
   "main": "__generated__/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -14,11 +14,12 @@
     "postinstall": "expo-yarn-workspaces postinstall"
   },
   "dependencies": {
-    "@act/controllers": "1.0.0",
     "@expo/vector-icons": "expo/vector-icons",
+    "@hashes/controllers": "1.0.0",
     "@react-native-community/async-storage": "~1.11.0",
     "@react-native-community/masked-view": "react-native-community/react-native-masked-view",
     "@react-navigation/bottom-tabs": "^5.8.0",
+    "@react-navigation/material-top-tabs": "^5.2.19",
     "@react-navigation/native": "^5.7.3",
     "@react-navigation/stack": "^5.9.0",
     "@types/lodash": "^4.14.161",
@@ -41,6 +42,7 @@
     "react-native-safe-area-context": "~3.0.7",
     "react-native-screens": "~2.9.0",
     "react-native-swiper": "^1.6.0",
+    "react-native-tab-view": "^2.15.2",
     "react-native-unimodules": "^0.10.1",
     "react-native-web": "~0.11.7",
     "react-redux": "^7.2.1",

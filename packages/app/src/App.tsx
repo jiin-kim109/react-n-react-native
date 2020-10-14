@@ -1,14 +1,13 @@
 /* eslint-disable */
 import React, { Component } from "react";
 import { registerRootComponent } from "expo";
-import { NavigationContainer } from "@react-navigation/native";
 import { Provider as StateProvider } from "react-redux";
 import {
   store,
   setPlatform,
-} from "@act/controllers";
+} from "@hashes/controllers";
 import * as Font from "expo-font";
-import { Image, YellowBox } from "react-native";
+import { View, Image, YellowBox } from "react-native";
 import { Provider as ThemeProvider } from 'react-native-paper';
 import theme from "./styles/styles";
 import { StatusBar } from 'expo-status-bar';
@@ -52,7 +51,7 @@ class App extends Component<Props, State> {
     return (
       <ThemeProvider theme={theme}>
         <StateProvider store={store}>
-          <StatusBar style="light" backgroundColor="black"/>
+          <StatusBar style="light" backgroundColor="black" translucent={false}/>
           <Routes/>
         </StateProvider>
       </ThemeProvider>

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
 
-const ProfileScreen = () => {
+const Trends = () => {
   return (
     <>
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Profile Test!! please change it </Text>
+        <Text>Activity Test!! please change it </Text>
       </View>
     </>
   );
 };
 
-export default ProfileScreen;
+export default Trends;

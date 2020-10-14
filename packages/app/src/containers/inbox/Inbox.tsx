@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
 
-const ChatListScreen = () => {
+const Inbox = () => {
   return (
     <>
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -11,4 +11,4 @@ const ChatListScreen = () => {
   );
 };
 
-export default ChatListScreen;
+export default Inbox;
