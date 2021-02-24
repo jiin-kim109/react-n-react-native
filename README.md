@@ -1,17 +1,15 @@
 # Act-App
 
-React and React Native packages for mobile and web app development
+React and React Native monorepos for developing both mobile and web app. 
   
 
 ## Description
 
-A multi-platform application made of multiple yarn packages that contain common code sharing between React and React Native components
+A cross-platform application made of repositories linked by yarn-workspace. React Hooks in the common package are shared and embedded across both React and React Native rendering components. 
 
 - packages/web (React.js web app)  
 - packages/app (React Native app)  
 - packages/common (Code sharing between web and app)  
-  
-The packages are managed by Lerna.js  
   
 ## Deploy  
   
