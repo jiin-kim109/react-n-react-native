@@ -1,17 +1,14 @@
-# Act-App
+# Cross-Platform-Development-React-n-React-Native
 
-React and React Native monorepos for developing both mobile and web app. 
-  
+A demo for a React and React Native cross development in a monorepo sturcture. Aiming to reduce workloads of web and mobile development by sharing the common components and hooks.
 
 ## Description
 
-A cross-platform application made of repositories linked by yarn-workspace. React Hooks in the common package are shared and embedded across both React and React Native rendering components. 
+A cross-platform development with yarn-workspace. Upon the monorepo structure, React and React Native will share the common components and React Hooks. The folder structure is as follows,
 
 - packages/web (React.js web app)  
 - packages/app (React Native app)  
-- packages/common (Code sharing between web and app)  
-  
-## Deploy  
+- packages/common (common hooks and componetns)   
   
 ### App  
   
@@ -22,28 +19,30 @@ A cross-platform application made of repositories linked by yarn-workspace. Reac
 1. Clone project  
 
 ```
-git clone https://github.com/benawad/fullstack-graphql-airbnb-clone.git
+git clone https://github.com/jiin-kim109/Cross-Platform-Development-React-n-React-Native.git. 
 ```
   
 2. Download dependencies  
    
-At the root directory, type the command below to download the every assigned dependencies
+Each packages/web and packages/app has its own dependencies under /packages/web/node_modules and /packages/app/node_modules. The common dependencies will be installed in the node_modules in the root of the project. However, Yo do not need to worry about installing packages separately. By typing yarn, the yarn-workspace will do it for you.
+
+In the root folder, type the following command,
 ```
 yarn
 ```
+
+You can modify the package installation configuration in lerna.json.  
   
-## Yarn Commands
+## Yarn Commands. 
   
-1. Run the application in dev
-  
-- React web app  
+1. To run the React web app  
     
 ```
 cd packages/web  
 yarn start
 ```
   
-- React Native app    
+2. To run the React Native mobile app   
   
 The command will open expo dev server (default=localhost:19002)  
 ```
@@ -53,15 +52,12 @@ expo start
 ./appstart.sh
 ```
   
-2. Build the application
-  
-- React web app   
-  
+3. To build the React web app    
 ```
 yarn build:web    
 ```
   
-- React Native app    
+4. To build the React Native mobile app    
   
 .apk or .app-bundle for Android  
 ```  
@@ -74,48 +70,11 @@ yarn build:app:ios
   
 4. Testing  
   
-* Test common components & controller  
+* Testing common components & controller  
   
 ```
 cd packages/controllers  
 yarn jest  
 ```
   
-## TODO  
-- Add server package  
-
-## Features
-  
-### React Native for Web
-https://github.com/necolas/react-native-web  
-  
-(docs) http://necolas.github.io/react-native-web/docs/?path=/docs/overview-getting-started--page  
-  
-### Importing RN-for-web components from web
-https://codesandbox.io/s/q4qymyp2l6?file=/src/App.js:2971-2980  
-  
-### DI to support service per platform
-(typedi) https://github.com/typestack/typedi   
-(docs) https://docs.typestack.community/typedi/v/develop/  
-  
-### Async events subscription
-(PubSub) https://github.com/georapbox/PubSub  
-  
-### How to import files outside React Native root directory
-(metro bundler)  
-https://medium.com/@dushyant_db/how-to-import-files-from-outside-of-root-directory-with-react-native-metro-bundler-18207a348427  
-   
-### Monorepo using yarn Workspaces in Expo
-(expo-yarn-workspaces) https://github.com/expo/expo/tree/master/packages/expo-yarn-workspaces  
-  
-### Swipe in React Native
-(react-native swipe) https://github.com/leecade/react-native-swiper  
-  
-### Delete Navigation Stack History
-https://github.com/react-navigation/react-navigation/issues/295  
-
-### Mobx Serializr
-https://github.com/mobxjs/serializr  
-
-### AsyncStorage
-https://github.com/react-native-community/async-storage
+## TODO   
