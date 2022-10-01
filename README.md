@@ -1,14 +1,16 @@
 # Cross-Platform-Development-React-n-React-Native
 
-A demo for a React and React Native cross development in a monorepo sturcture. Aiming to reduce workloads of web and mobile development by sharing the common components and hooks.
+A cross-platform development demo. React and React Native share the common componetns and hooks in a monorepo sturcture. Aiming to reduce workloads of web and mobile co-development.
 
 ## Description
 
-A cross-platform development with yarn-workspace. Upon the monorepo structure, React and React Native will share the common components and React Hooks. The folder structure is as follows,
+I used Yarn-Workspaces to split code into multiple packages. The folder structure is as follows,
 
 - packages/web (React.js web app)  
 - packages/app (React Native app)  
 - packages/common (common hooks and componetns)   
+
+where the packages/common has some basic React components such as Button, Text, and Theme. The common hooks include the global state and authentication context. 
   
 ### App  
   
