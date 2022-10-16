@@ -1,6 +1,6 @@
 # Cross-Platform-Development-React-n-React-Native
 
-A cross-platform development demo. React and React Native share the common componetns and hooks in a monorepo sturcture. Aiming to reduce workloads of web and mobile co-development.
+A cross-platform development demo. React and React Native share the common componetns and hooks in a monorepo sturcture. Aiming to reduce the workloads in web and mobile development.
 
 ## Description
 
